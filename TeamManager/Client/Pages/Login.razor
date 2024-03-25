@@ -7,9 +7,18 @@
 
 <PageTitle>Login</PageTitle>
 
-<h3>Login</h3>
-
-<MudCard>
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <MudCard Class="m-4" Rounded="true">
+    <MudCardHeader>
+            <CardHeaderAvatar >
+                <MudAvatar Color="Color.Dark">
+                <MudIcon Icon="@Icons.Material.Filled.Person"  />
+            </MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h5" Color="Color.Dark">Login</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
     <MudCardContent>
         <MudForm Model="user" OnValidSubmit="HandleLogin">
             <MudItem>
@@ -30,6 +39,8 @@
 <MudTypography Typo="TypoStyle.Body2" Class="text-danger">
     <span>@errorMessage</span>
 </MudTypography>
+</MudContainer>
+
 
 
 @code {

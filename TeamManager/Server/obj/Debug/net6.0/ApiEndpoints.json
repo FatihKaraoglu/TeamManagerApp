@@ -76,5 +76,31 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.VacationController",
+    "Method": "RequestVacation",
+    "RelativePath": "api/Vacation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vacationRequestDTO",
+        "Type": "TeamManager.Shared.DTO.VacationRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

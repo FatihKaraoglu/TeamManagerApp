@@ -13,7 +13,9 @@ namespace TeamManager.Shared
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
-        public Address Address { get; set; }
         public string Role { get; set; } = "Customer";
+
+        public ICollection<VacationRequest> VacationRequests { get; set; }
+        public ICollection<VacationBalance> VacationBalances { get; set; }
     }
 }

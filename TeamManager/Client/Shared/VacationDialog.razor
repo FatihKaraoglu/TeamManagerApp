@@ -1,0 +1,48 @@
+﻿<MudDialog >
+    <DialogContent>
+        <div class="d-flex flex-row">
+            @if (Elements.Any())
+            {
+                <MudDataGrid Items="@Elements" Style="height: 500px; width: 100%" Virtualize="true" Height="500px">
+                <Columns>
+                    <PropertyColumn Property="x => x.VacationRequestId" Title="Id" />
+                    <PropertyColumn Property="x => x.UserId" />
+                        <PropertyColumn Property="x => x.StartDate" Format="d" />
+                        <PropertyColumn Property="x => x.EndDate" Format="d" />
+                    <PropertyColumn Property="x => x.Reason" Title="Reason" />
+                </Columns>
+                </MudDataGrid>
+
+            } else
+            {
+                <h1>No elements</h1>
+            }
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudDateRangePicker Label="Vacation Request" Clearable="true" PlaceholderStart="Start Date" PlaceholderEnd="End Date" />
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    private IEnumerable<VacationRequest> Elements = new List<VacationRequest>()
+    {
+    new VacationRequest { VacationRequestId = 1, UserId = 1, StartDate = new DateTime(2024, 4, 1), EndDate = new DateTime(2024, 4, 7), Status = "Pending", Reason = "Vacation trip" },
+    new VacationRequest { VacationRequestId = 2, UserId = 2, StartDate = new DateTime(2024, 5, 15), EndDate = new DateTime(2024, 5, 20), Status = "Approved", Reason = "Family vacation" },
+    new VacationRequest { VacationRequestId = 3, UserId = 3, StartDate = new DateTime(2024, 6, 10), EndDate = new DateTime(2024, 6, 20), Status = "Pending", Reason = "Personal reasons" },
+    new VacationRequest { VacationRequestId = 4, UserId = 4, StartDate = new DateTime(2024, 7, 1), EndDate = new DateTime(2024, 7, 5), Status = "Approved", Reason = "Beach holiday" },
+    new VacationRequest { VacationRequestId = 5, UserId = 5, StartDate = new DateTime(2024, 8, 1), EndDate = new DateTime(2024, 8, 15), Status = "Pending", Reason = "Trip to Europe" },
+    new VacationRequest { VacationRequestId = 6, UserId = 6, StartDate = new DateTime(2024, 9, 1), EndDate = new DateTime(2024, 9, 7), Status = "Approved", Reason = "Mountain hiking" },
+    new VacationRequest { VacationRequestId = 7, UserId = 7, StartDate = new DateTime(2024, 10, 1), EndDate = new DateTime(2024, 10, 5), Status = "Pending", Reason = "Camping with family" },
+    new VacationRequest { VacationRequestId = 8, UserId = 8, StartDate = new DateTime(2024, 11, 1), EndDate = new DateTime(2024, 11, 10), Status = "Approved", Reason = "Sightseeing trip" },
+    new VacationRequest { VacationRequestId = 9, UserId = 9, StartDate = new DateTime(2024, 12, 1), EndDate = new DateTime(2024, 12, 7), Status = "Pending", Reason = "Holiday season" },
+    new VacationRequest { VacationRequestId = 10, UserId = 10, StartDate = new DateTime(2024, 12, 25), EndDate = new DateTime(2024, 12, 31), Status = "Approved", Reason = "Christmas vacation" }
+    };
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void AddNewVacationRequest() => MudDialog.Cancel();
+}
+
+

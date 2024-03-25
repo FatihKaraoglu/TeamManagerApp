@@ -1,24 +1,27 @@
 ﻿@inherits LayoutComponentBase;
 
 <MudThemeProvider Theme=@_mixedTheme/>
-<MudDialogProvider />
+<MudDialogProvider FullWidth="true" MaxWidth="@MaxWidth.ExtraLarge" CloseButton="false" />
 <MudSnackbarProvider />
+
+<style>
+    /* Custom CSS to disable highlighting effect for the link tag */
+    .disable-highlight a:hover {
+        color: inherit !important; /* Use the default text color */
+    }
+</style>
 
 <MudLayout>
     <MudAppBar Elevation="0">
     </MudAppBar>
     <MudDrawer Open="true">
-        <MudNavMenu>
-            <MudText Typo="Typo.h6" Class="px-4">My Application</MudText>
+        <MudNavMenu Rounded="true" Color="Color.Primary" class="disable-highlight pa-2">
+            <MudText Typo="Typo.h6"  Class="my-4 mx-3">My Application</MudText>
             <MudDivider Class="my-2" />
-            <MudNavLink Href="/dashboard">Dashboard</MudNavLink>
-            <MudNavLink Href="/servers">Servers</MudNavLink>
-            <MudNavLink Href="/billing" Disabled="true">Billing</MudNavLink>
-            <MudNavGroup Title="Settings" Expanded="true">
-                <MudNavLink Href="/users">Users</MudNavLink>
-                <MudNavLink Href="/security">Security</MudNavLink>
-            </MudNavGroup>
-            <MudNavLink Href="/about">About</MudNavLink>
+            <MudNavLink Href="/hr-services" Icon="@Icons.Material.Filled.Badge">HR-Services</MudNavLink>
+            <MudDivider/>
+            <MudNavLink Href="/login" Icon="@Icons.Material.Filled.Login">Login</MudNavLink>
+            <MudNavLink Href="/register" Icon="@Icons.Material.Filled.AppRegistration">Register</MudNavLink>
         </MudNavMenu>
     </MudDrawer>
     <MudMainContent>
@@ -33,23 +36,28 @@
 
 			Palette = new Palette
 			{
-				Primary = Colors.BlueGrey.Default, // Set your primary color
+				Primary = Colors.Amber.Darken1, // Set your primary color
 				Secondary = Colors.Red.Default, // Set your secondary color
-				Background = "#f3f3f3", // Set background color
+                Background = "#e9e9e9", // Set background color
 				Surface = Colors.Grey.Lighten4, // Set surface color
 				AppbarBackground = "#ffffff", // Set appbar background color
-				DrawerBackground = "#202123",
-                DrawerText = "#a5a2a9", // Example drawer text color
+                DrawerBackground = "#1d1d1d",
+                DrawerText = "#e0e0e0", // Example drawer text color
 				DrawerIcon = "#ffffff", // Example drawer icon color
-				TextPrimary = "#ffffff",
+				TextPrimary = "#000000",
                 TextSecondary = "#a5a2a9",
-                TextDisabled = "#78777c"
+                TextDisabled = "#78777c",
+                Info = Colors.Green.Lighten2,
+                
+                
+                
 
 			},
 
 			LayoutProperties = new LayoutProperties
 			{
-				DrawerWidthLeft = "240px"
+				DrawerWidthLeft = "240px",
+                AppbarHeight = "60px"
 			},
             Typography = new Typography()
             {

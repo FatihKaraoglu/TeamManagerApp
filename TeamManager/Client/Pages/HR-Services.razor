@@ -1,0 +1,41 @@
+﻿@page "/hr-services"
+@using TeamManager.Shared;
+@inject IDialogService Dialog
+
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard Class="d-flex flex-column justify-center" Elevation="0">
+        <MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h5">
+                    HR-Services
+                </MudText>
+            </MudCardContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <div class="d-flex flex-row flex-wrap justify-content-around" style="max-width: 100%;">
+                <MudCard Class="m-2 flex-wrap" Style="min-width: 250px;">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h6">
+                            Vacation
+                        </MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <div style="display: flex; justify-content: center;">
+                            <MudIconButton Icon="@Icons.Material.Filled.BeachAccess" Color="Color.Primary" OnClick="OpenVacationDialog" />
+                        </div>
+                    </MudCardContent>
+                </MudCard>
+            </div>
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@code {
+
+    public void OpenVacationDialog()
+    {
+        Console.WriteLine("Click");
+        Dialog.Show<VacationDialog>("Vacation Request");
+    }
+}

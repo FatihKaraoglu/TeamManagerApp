@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj": {}
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
         "projectName": "TeamManager.Shared",
-        "projectPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj",
-        "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
+        "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
