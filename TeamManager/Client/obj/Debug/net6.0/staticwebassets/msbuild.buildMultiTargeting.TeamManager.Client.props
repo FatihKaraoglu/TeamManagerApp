@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TeamManager.Client.props" />
+</Project>

@@ -1,0 +1,14 @@
+/* /Shared/AdminMenu.razor.rz.scp.css */
+.top-row a[b-1zvt91rzix] {
+    margin-left: 0 !important;
+}
+
+.dropdown-item:hover[b-1zvt91rzix] {
+    background-color: white;
+}
+/* /Shared/HomeButton.razor.rz.scp.css */
+.home-button[b-bhpobyacx5] {
+    white-space: nowrap;
+    margin-right: 10px;
+    transform: rotate(-5deg);
+}

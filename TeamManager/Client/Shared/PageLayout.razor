@@ -1,0 +1,67 @@
+﻿@inherits LayoutComponentBase;
+
+<MudThemeProvider Theme=@_mixedTheme/>
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+    </MudAppBar>
+    <MudDrawer Open="true">
+        <MudNavMenu>
+            <MudText Typo="Typo.h6" Class="px-4">My Application</MudText>
+            <MudDivider Class="my-2" />
+            <MudNavLink Href="/dashboard">Dashboard</MudNavLink>
+            <MudNavLink Href="/servers">Servers</MudNavLink>
+            <MudNavLink Href="/billing" Disabled="true">Billing</MudNavLink>
+            <MudNavGroup Title="Settings" Expanded="true">
+                <MudNavLink Href="/users">Users</MudNavLink>
+                <MudNavLink Href="/security">Security</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/about">About</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = true;
+    public MudTheme _mixedTheme { get; set; } = new MudTheme()
+		{
+
+			Palette = new Palette
+			{
+				Primary = Colors.BlueGrey.Default, // Set your primary color
+				Secondary = Colors.Red.Default, // Set your secondary color
+				Background = "#f3f3f3", // Set background color
+				Surface = Colors.Grey.Lighten4, // Set surface color
+				AppbarBackground = "#ffffff", // Set appbar background color
+				DrawerBackground = "#202123",
+                DrawerText = "#a5a2a9", // Example drawer text color
+				DrawerIcon = "#ffffff", // Example drawer icon color
+				TextPrimary = "#ffffff",
+                TextSecondary = "#a5a2a9",
+                TextDisabled = "#78777c"
+
+			},
+
+			LayoutProperties = new LayoutProperties
+			{
+				DrawerWidthLeft = "240px"
+			},
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new []{"Lato"}
+                }
+            }
+		};
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

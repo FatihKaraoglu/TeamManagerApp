@@ -1,0 +1,12 @@
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\bin\Debug\net6.0\TeamManager.Shared.deps.json
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\bin\Debug\net6.0\TeamManager.Shared.dll
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\bin\Debug\net6.0\TeamManager.Shared.pdb
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.AssemblyInfoInputs.cache
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.AssemblyInfo.cs
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.csproj.CoreCompileInputs.cache
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.sourcelink.json
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.dll
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\refint\TeamManager.Shared.dll
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\TeamManager.Shared.pdb
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Shared\obj\Debug\net6.0\ref\TeamManager.Shared.dll
