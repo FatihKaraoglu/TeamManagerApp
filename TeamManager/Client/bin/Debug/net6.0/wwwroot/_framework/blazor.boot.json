@@ -1,7 +1,7 @@
 {
   "entryAssembly": "TeamManager.Client",
   "resources": {
-    "hash": "sha256-53a3b3roFNWp3ljEigZVLoHO9Bo073Jwo/IPQWYLYk0=",
+    "hash": "sha256-DDIlbHDaeBj+XvcCoXmauslPk4apOO1SKBlgeU7OH0Q=",
     "runtime": {
       "dotnet.6.0.27.3qt809rkxb.js": "sha256-26GREQBtzf9waPgLefTus1ODJdcs93wyAEl2cY4aiD0=",
       "dotnet.timezones.blat": "sha256-Hu3yTR07LZhOqoVr6q2tVZ2tv621ulhIVgZRupSxU6A=",
@@ -205,12 +205,12 @@
       "mscorlib.dll": "sha256-Ub61T08cmIsx8jHdkPjwZqxKIA5MkRMzxFZ6bfRzsQE=",
       "netstandard.dll": "sha256-wKCgBknfB47bayRyJuAX90jCUZRARgJyM9BU3yPC25o=",
       "System.Private.CoreLib.dll": "sha256-Szu5RxgPEPe1xT34BtNc9Meh5TEbyk/u70S2iWzi+co=",
-      "TeamManager.Shared.dll": "sha256-Q0c5V22pbnLMo/TJVF/gfxndouRBn/g/CbAvzVi6y3g=",
-      "TeamManager.Client.dll": "sha256-6KCT18pLo3Odss2zUxvLxnvRa4WqorSSqskBJ3Wmnhw="
+      "TeamManager.Shared.dll": "sha256-TWFFNUh+9nimodlB4s7csGiEDmQE+q5+AWAUsUTJcus=",
+      "TeamManager.Client.dll": "sha256-TtoxtScFdtRk5sXmLgN/3usdzsex8NV/2FygUNQpAT4="
     },
     "pdb": {
-      "TeamManager.Shared.pdb": "sha256-OuL0BIvtRQgK8/SfOuDfQO5yxmAqUDXvfx28mKx12nE=",
-      "TeamManager.Client.pdb": "sha256-fVEWVBVGJupNca+NdwFmC/cH61JyPlFVIzWqPTlN/B4="
+      "TeamManager.Shared.pdb": "sha256-8GI9lDtYZuRupr9C4ZFq2PG+ViL4lPIXQwdnxb4fo3s=",
+      "TeamManager.Client.pdb": "sha256-kblhYt2EpqjxjRcnfsAkCckZLZNqI2p8JtPTTzu3LWk="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

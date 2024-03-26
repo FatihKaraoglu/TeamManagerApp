@@ -8,9 +8,9 @@ namespace TeamManager.Shared.DTO
 {
     public class VacationRequestDTO
     {
-        public int UserId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Reason { get; set; }
+        public string Status { get; set; }
     }
 }

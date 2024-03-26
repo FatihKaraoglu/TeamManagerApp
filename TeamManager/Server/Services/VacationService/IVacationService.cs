@@ -2,7 +2,8 @@
 {
     public interface IVacationService
     {
-        Task<bool> CheckExistingVacation(DateTime startDate, DateTime endDate, int userId);
-        Task<bool> CheckRemainingVacation(DateTime startDate, DateTime dateTime, int userId);
+        Task<bool> CheckExistingVacation(DateTime startDate, DateTime endDate);
+        Task<bool> CheckRemainingVacation(DateTime startDate, DateTime dateTime);
+        Task<List<VacationRequest>> GetVacationRequests();
     }
 }

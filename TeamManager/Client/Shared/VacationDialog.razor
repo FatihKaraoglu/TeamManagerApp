@@ -1,15 +1,22 @@
-﻿<MudDialog >
+﻿@using TeamManager.Client.Services.VacationService
+@using TeamManager.Shared.DTO
+@inject IVacationService VacationService;
+@inject ISnackbar Snackbar
+
+<MudDialog >
     <DialogContent>
         <div class="d-flex flex-row">
             @if (Elements.Any())
             {
-                <MudDataGrid Items="@Elements" Style="height: 500px; width: 100%" Virtualize="true" Height="500px">
+                <MudDataGrid Items="@Elements" Style="height: 500px; width: 70%" Virtualize="true" Height="500px" FixedHeader="true">
                 <Columns>
                     <PropertyColumn Property="x => x.VacationRequestId" Title="Id" />
                     <PropertyColumn Property="x => x.UserId" />
                         <PropertyColumn Property="x => x.StartDate" Format="d" />
                         <PropertyColumn Property="x => x.EndDate" Format="d" />
                     <PropertyColumn Property="x => x.Reason" Title="Reason" />
+                        <PropertyColumn Property="x => x.Status" Title="Status" />
+
                 </Columns>
                 </MudDataGrid>
 
@@ -17,16 +24,33 @@
             {
                 <h1>No elements</h1>
             }
+            <div style="width: 30%">
+                <MudContainer MaxWidth="MaxWidth.Large">
+                    <h2>Vacation Balance</h2>
+                    <!-- Display vacation balance here -->
+                    <p>Current Vacation Balance: @currentVacationBalance days</p>
+                    <div class="mt-3">
+                        <!-- MudDateRangePicker with top margin -->
+                        <MudDateRangePicker @ref="dateRangePicker" Label="Vacation Request" Clearable="true" PlaceholderStart="Start Date" PlaceholderEnd="End Date" />
+                    </div>
+
+                    <div class="mt-3">
+                        <!-- Submit button with top margin -->
+                        <MudButton Color="Color.Primary" OnClick="Submit" class="align-self-end">Request Vacation</MudButton>
+                    </div>
+                </MudContainer>
+            </div>
         </div>
     </DialogContent>
     <DialogActions>
-        <MudDateRangePicker Label="Vacation Request" Clearable="true" PlaceholderStart="Start Date" PlaceholderEnd="End Date" />
-        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+        <MudButton OnClick="Close"></MudButton>
     </DialogActions>
 </MudDialog>
 
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    public MudDateRangePicker dateRangePicker { get; set; }
+    public int currentVacationBalance = 5;
     private IEnumerable<VacationRequest> Elements = new List<VacationRequest>()
     {
     new VacationRequest { VacationRequestId = 1, UserId = 1, StartDate = new DateTime(2024, 4, 1), EndDate = new DateTime(2024, 4, 7), Status = "Pending", Reason = "Vacation trip" },
@@ -41,8 +65,36 @@
     new VacationRequest { VacationRequestId = 10, UserId = 10, StartDate = new DateTime(2024, 12, 25), EndDate = new DateTime(2024, 12, 31), Status = "Approved", Reason = "Christmas vacation" }
     };
 
-    void Submit() => MudDialog.Close(DialogResult.Ok(true));
-    void AddNewVacationRequest() => MudDialog.Cancel();
+    async Task Submit()
+    {
+        var dateRange = dateRangePicker.DateRange;
+        if(dateRange != null)
+        {
+            var request = new VacationRequestDTO
+                {
+                    StartDate = dateRange.Start.Value,
+                    EndDate = dateRange.End.Value,
+                    UserId = 1,
+                    Reason = "System Test"
+                };
+            var result = await VacationService.RequestVacation(request);
+
+            if (result.Success)
+            {
+                AddVacationRequestStateSnackBar(result.Message, Severity.Success);
+                dateRangePicker.Clear();
+            } else
+            {
+                AddVacationRequestStateSnackBar(result.Message, Severity.Error);
+            }
+        }
+
+    }
+    void AddVacationRequestStateSnackBar(string message, Severity severity)
+    {
+        Snackbar.Add(message, severity);
+    }
+    void Close() => MudDialog.Close();
 }
 
 

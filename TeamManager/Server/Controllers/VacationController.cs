@@ -17,10 +17,33 @@ namespace TeamManager.Server.Controllers
             _vacationService = vacationService;
         }
 
+        [HttpGet]
+        public async Task<ServiceResponse<List<VacationRequestDTO>>> GetVacationRequests()
+        {
+            var result = await _vacationService.GetVacationRequests();
+
+            if(result.Count == 0)
+            {
+                return new ServiceResponse<List<VacationRequestDTO>>()
+                {
+                    Message = "No Vacation Requests for this user!",
+                    Data = new List<VacationRequestDTO>(),
+                    Success = true,
+                };
+            }
+
+            return new ServiceResponse<List<VacationRequestDTO>>()
+            {
+                Message = "No Vacation Requests for this user!",
+                Data = result,
+                Success = true,
+            };
+        }
+
         [HttpPost]
         public async Task<ServiceResponse<bool>> RequestVacation(VacationRequestDTO vacationRequestDTO)
         {
-            bool exisiting = await _vacationService.CheckExistingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate, vacationRequestDTO.UserId);
+            bool exisiting = await _vacationService.CheckExistingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate);
             if (exisiting)
             {
                 return new ServiceResponse<bool>
@@ -31,7 +54,7 @@ namespace TeamManager.Server.Controllers
                 };
             }
 
-            bool enoughRemainingBalance = await _vacationService.CheckRemainingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate, vacationRequestDTO.UserId);
+            bool enoughRemainingBalance = await _vacationService.CheckRemainingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate);
             if (!enoughRemainingBalance) 
             {
                 return new ServiceResponse<bool>
