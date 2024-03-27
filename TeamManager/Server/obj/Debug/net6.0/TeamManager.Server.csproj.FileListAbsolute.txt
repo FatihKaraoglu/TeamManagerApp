@@ -190,3 +190,5 @@ C:\Users\karao\TeamManagerApp\TeamManager\Server\obj\Debug\net6.0\TeamManager.Se
 C:\Users\karao\TeamManagerApp\TeamManager\Server\obj\Debug\net6.0\TeamManager.Server.genruntimeconfig.cache
 C:\Users\karao\TeamManagerApp\TeamManager\Server\obj\Debug\net6.0\ref\TeamManager.Server.dll
 C:\Users\karao\TeamManagerApp\TeamManager\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Server\obj\Debug\net6.0\TeamManager.Server.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\f.karaoglu\Source\repos\TeamManager\TeamManager\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll

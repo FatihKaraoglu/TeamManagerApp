@@ -12,8 +12,8 @@ using TeamManager.Server.Data;
 namespace TeamManager.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240325213050_VacationRequestAndBalanceAdded")]
-    partial class VacationRequestAndBalanceAdded
+    [Migration("20240327113117_initCreate")]
+    partial class initCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,7 +80,7 @@ namespace TeamManager.Server.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("vacationBalances");
+                    b.ToTable("VacationBalances");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationRequest", b =>

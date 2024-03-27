@@ -80,7 +80,7 @@
   {
     "ContainingType": "TeamManager.Server.Controllers.VacationController",
     "Method": "RequestVacation",
-    "RelativePath": "api/Vacation",
+    "RelativePath": "api/Vacation/RequestVacation",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -94,6 +94,52 @@
     "ReturnTypes": [
       {
         "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.VacationController",
+    "Method": "GetVacationBalance",
+    "RelativePath": "api/Vacation/VacationBalance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDto",
+        "Type": "TeamManager.Shared.DTO.VacationBalanceRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[TeamManager.Shared.VacationBalance, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.VacationController",
+    "Method": "GetVacationRequests",
+    "RelativePath": "api/Vacation/VacationRequests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Collections.Generic.List\u00601[[TeamManager.Shared.VacationRequest, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

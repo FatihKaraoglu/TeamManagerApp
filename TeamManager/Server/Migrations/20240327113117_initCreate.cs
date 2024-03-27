@@ -5,12 +5,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TeamManager.Server.Migrations
 {
-    public partial class VacationRequestAndBalanceAdded : Migration
+    public partial class initCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "vacationBalances",
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VacationBalances",
                 columns: table => new
                 {
                     VacationBalanceId = table.Column<int>(type: "int", nullable: false)
@@ -22,9 +39,9 @@ namespace TeamManager.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_vacationBalances", x => x.VacationBalanceId);
+                    table.PrimaryKey("PK_VacationBalances", x => x.VacationBalanceId);
                     table.ForeignKey(
-                        name: "FK_vacationBalances_Users_UserId",
+                        name: "FK_VacationBalances_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -55,8 +72,8 @@ namespace TeamManager.Server.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_vacationBalances_UserId",
-                table: "vacationBalances",
+                name: "IX_VacationBalances_UserId",
+                table: "VacationBalances",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -68,10 +85,13 @@ namespace TeamManager.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "vacationBalances");
+                name: "VacationBalances");
 
             migrationBuilder.DropTable(
                 name: "VacationRequests");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

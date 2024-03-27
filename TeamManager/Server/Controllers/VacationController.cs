@@ -17,63 +17,39 @@ namespace TeamManager.Server.Controllers
             _vacationService = vacationService;
         }
 
-        [HttpGet]
-        public async Task<ServiceResponse<List<VacationRequestDTO>>> GetVacationRequests()
+        [HttpGet("VacationRequests")]
+        public async Task<ServiceResponse<List<VacationRequest>>> GetVacationRequests()
         {
             var result = await _vacationService.GetVacationRequests();
 
             if(result.Count == 0)
             {
-                return new ServiceResponse<List<VacationRequestDTO>>()
+                return new ServiceResponse<List<VacationRequest>>()
                 {
                     Message = "No Vacation Requests for this user!",
-                    Data = new List<VacationRequestDTO>(),
+                    Data = new List<VacationRequest>(),
                     Success = true,
                 };
             }
 
-            return new ServiceResponse<List<VacationRequestDTO>>()
+            return new ServiceResponse<List<VacationRequest>>()
             {
-                Message = "No Vacation Requests for this user!",
+                Message = "",
                 Data = result,
                 Success = true,
             };
         }
 
-        [HttpPost]
+        [HttpPost("VacationBalance")]
+        public async Task<ServiceResponse<VacationBalance>> GetVacationBalance([FromBody] VacationBalanceRequestDTO requestDto)
+        {
+           return await _vacationService.GetVacationBalance(requestDto.Year);
+        }
+
+        [HttpPost("RequestVacation")]
         public async Task<ServiceResponse<bool>> RequestVacation(VacationRequestDTO vacationRequestDTO)
         {
-            bool exisiting = await _vacationService.CheckExistingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate);
-            if (exisiting)
-            {
-                return new ServiceResponse<bool>
-                {
-                    Success = false,
-                    Message = "There is an overlapping Vacation!",
-                    Data = false
-                };
-            }
-
-            bool enoughRemainingBalance = await _vacationService.CheckRemainingVacation(vacationRequestDTO.StartDate, vacationRequestDTO.EndDate);
-            if (!enoughRemainingBalance) 
-            {
-                return new ServiceResponse<bool>
-                {
-                    Success = false,
-                    Message = "Not enough Vacation Days left!",
-                    Data = false
-                };
-            }
-
-            return new ServiceResponse<bool>
-            {
-                Success = true,
-                Message = "Request has been made! Wait for your Employye to accept or deny your Request!",
-                Data = true
-
-            };
-           
-           
+           return await _vacationService.RequestVacation(vacationRequestDTO);
         }
     }
 }

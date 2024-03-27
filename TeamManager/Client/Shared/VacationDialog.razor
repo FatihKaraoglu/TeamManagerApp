@@ -5,42 +5,71 @@
 
 <MudDialog >
     <DialogContent>
-        <div class="d-flex flex-row">
-            @if (Elements.Any())
-            {
-                <MudDataGrid Items="@Elements" Style="height: 500px; width: 70%" Virtualize="true" Height="500px" FixedHeader="true">
-                <Columns>
-                    <PropertyColumn Property="x => x.VacationRequestId" Title="Id" />
-                    <PropertyColumn Property="x => x.UserId" />
-                        <PropertyColumn Property="x => x.StartDate" Format="d" />
-                        <PropertyColumn Property="x => x.EndDate" Format="d" />
-                    <PropertyColumn Property="x => x.Reason" Title="Reason" />
-                        <PropertyColumn Property="x => x.Status" Title="Status" />
+        @if (dataLoaded)
+        {
+            <div class="d-flex flex-row">
+                @if (Elements.Any())
+                {
+                    <MudDataGrid Items="@Elements" Style="height: 500px; width: 70%" Virtualize="true" Height="500px" FixedHeader="true">
+                        <Columns>
+                            <PropertyColumn Property="x => x.StartDate" Format="d" />
+                            <PropertyColumn Property="x => x.EndDate" Format="d" />
+                            <PropertyColumn Property="x => x.Reason" Title="Reason" />
+                            <PropertyColumn Property="x => x.Status" Title="Status" />
 
-                </Columns>
-                </MudDataGrid>
+                        </Columns>
+                    </MudDataGrid>
 
-            } else
-            {
-                <h1>No elements</h1>
-            }
-            <div style="width: 30%">
-                <MudContainer MaxWidth="MaxWidth.Large">
-                    <h2>Vacation Balance</h2>
-                    <!-- Display vacation balance here -->
-                    <p>Current Vacation Balance: @currentVacationBalance days</p>
-                    <div class="mt-3">
-                        <!-- MudDateRangePicker with top margin -->
-                        <MudDateRangePicker @ref="dateRangePicker" Label="Vacation Request" Clearable="true" PlaceholderStart="Start Date" PlaceholderEnd="End Date" />
-                    </div>
+                }
+                else
+                {
+                    <h1>No elements</h1>
+                }
+                <div style="width: 30%">
+                    <MudContainer MaxWidth="MaxWidth.Large">
+                        <h2>Vacation Balance</h2>
+                        <!-- Display vacation balance here -->
+                        <p>Current Vacation Balance: @remainingBalance days</p>
+                        <div class="mt-3">
+                            <!-- MudDateRangePicker with top margin -->
+                            <MudDateRangePicker @ref="dateRangePicker" Label="Vacation Request" Clearable="true" PlaceholderStart="Start Date" PlaceholderEnd="End Date" />
+                        </div>
 
-                    <div class="mt-3">
-                        <!-- Submit button with top margin -->
-                        <MudButton Color="Color.Primary" OnClick="Submit" class="align-self-end">Request Vacation</MudButton>
-                    </div>
-                </MudContainer>
+                        <div class="mt-3">
+                            <!-- Submit button with top margin -->
+                            <MudButton Color="Color.Primary" OnClick="Submit" class="align-self-end">Request Vacation</MudButton>
+                        </div>
+                    </MudContainer>
+                </div>
             </div>
-        </div>
+        } else
+        {
+            <MudSkeleton Style="height: 500px">
+                <div class="d-flex flex-row">
+                    <MudCard Style="height: 500px; width: 70%"></MudCard>
+                </div>
+                <div style="width: 30%">
+                    <MudContainer MaxWidth="MaxWidth.Large">
+                        <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Width="60%" />
+                        <!-- Display vacation balance here -->
+                        <MudSkeleton Animation="Animation.Wave" Width="80%" />
+                        <div class="mt-3">
+                            <!-- MudDateRangePicker with top margin -->
+                            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Width="80%" />
+                        </div>
+
+                        <div class="mt-3">
+                            <!-- Submit button with top margin -->
+                            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Width="60%" />
+                        </div>
+                    </MudContainer>
+                </div>
+            </MudSkeleton>
+            <MudOverlay Visible="loadingVisible" DarkBackground="true" Absolute="true">
+                <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+            </MudOverlay>
+        }
+
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Close"></MudButton>
@@ -50,20 +79,18 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     public MudDateRangePicker dateRangePicker { get; set; }
-    public int currentVacationBalance = 5;
-    private IEnumerable<VacationRequest> Elements = new List<VacationRequest>()
+    public int remainingBalance { get; set; }
+
+    public bool dataLoaded { get; set; }
+    public bool loadingVisible { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-    new VacationRequest { VacationRequestId = 1, UserId = 1, StartDate = new DateTime(2024, 4, 1), EndDate = new DateTime(2024, 4, 7), Status = "Pending", Reason = "Vacation trip" },
-    new VacationRequest { VacationRequestId = 2, UserId = 2, StartDate = new DateTime(2024, 5, 15), EndDate = new DateTime(2024, 5, 20), Status = "Approved", Reason = "Family vacation" },
-    new VacationRequest { VacationRequestId = 3, UserId = 3, StartDate = new DateTime(2024, 6, 10), EndDate = new DateTime(2024, 6, 20), Status = "Pending", Reason = "Personal reasons" },
-    new VacationRequest { VacationRequestId = 4, UserId = 4, StartDate = new DateTime(2024, 7, 1), EndDate = new DateTime(2024, 7, 5), Status = "Approved", Reason = "Beach holiday" },
-    new VacationRequest { VacationRequestId = 5, UserId = 5, StartDate = new DateTime(2024, 8, 1), EndDate = new DateTime(2024, 8, 15), Status = "Pending", Reason = "Trip to Europe" },
-    new VacationRequest { VacationRequestId = 6, UserId = 6, StartDate = new DateTime(2024, 9, 1), EndDate = new DateTime(2024, 9, 7), Status = "Approved", Reason = "Mountain hiking" },
-    new VacationRequest { VacationRequestId = 7, UserId = 7, StartDate = new DateTime(2024, 10, 1), EndDate = new DateTime(2024, 10, 5), Status = "Pending", Reason = "Camping with family" },
-    new VacationRequest { VacationRequestId = 8, UserId = 8, StartDate = new DateTime(2024, 11, 1), EndDate = new DateTime(2024, 11, 10), Status = "Approved", Reason = "Sightseeing trip" },
-    new VacationRequest { VacationRequestId = 9, UserId = 9, StartDate = new DateTime(2024, 12, 1), EndDate = new DateTime(2024, 12, 7), Status = "Pending", Reason = "Holiday season" },
-    new VacationRequest { VacationRequestId = 10, UserId = 10, StartDate = new DateTime(2024, 12, 25), EndDate = new DateTime(2024, 12, 31), Status = "Approved", Reason = "Christmas vacation" }
-    };
+        // Perform initialization tasks asynchronously here
+        await LoadData();
+    }
+
+    private IEnumerable<VacationRequest> Elements = new List<VacationRequest>();
 
     async Task Submit()
     {
@@ -74,13 +101,13 @@
                 {
                     StartDate = dateRange.Start.Value,
                     EndDate = dateRange.End.Value,
-                    UserId = 1,
                     Reason = "System Test"
                 };
             var result = await VacationService.RequestVacation(request);
 
             if (result.Success)
             {
+                LoadData();
                 AddVacationRequestStateSnackBar(result.Message, Severity.Success);
                 dateRangePicker.Clear();
             } else
@@ -95,6 +122,18 @@
         Snackbar.Add(message, severity);
     }
     void Close() => MudDialog.Close();
+
+    private async Task LoadData()
+    {
+        loadingVisible = true;
+        var balance = await VacationService.GetVacationBalance();
+        Elements = (await VacationService.GetVacationRequests()).Data;
+
+        remainingBalance = balance.Data.RemainingBalance;
+        dataLoaded = true;
+        loadingVisible = false;
+    }
+
 }
 
 

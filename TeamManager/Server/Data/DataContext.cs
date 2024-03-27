@@ -30,26 +30,37 @@
         }
     );
 
-            modelBuilder.Entity<VacationBalance>().HasData(
+          modelBuilder.Entity<VacationBalance>().HasData(
                 new VacationBalance
                 {
                     VacationBalanceId = 1,
                     UserId = 1,
                     Year = 2024,
-                    TotalBalance = 20 // Adjust as needed
+                    TotalBalance = 20, // Adjust as needed
+                     RemainingBalance = 7
                 },
                 new VacationBalance
                 {
                     VacationBalanceId = 2,
                     UserId = 2,
                     Year = 2024,
-                    TotalBalance = 25 // Adjust as needed
-                }
+                    TotalBalance = 25, // Adjust as needed
+                    RemainingBalance = 15
+            
+                },
+                 new VacationBalance
+                 {
+                     VacationBalanceId = 3,
+                     UserId = 3,
+                     Year = 2024,
+                     TotalBalance = 35,
+                     RemainingBalance = 35// Adjust as needed
+                 }
             );
         }
         public DbSet<User> Users { get; set; }
         public DbSet<VacationRequest> VacationRequests { get; set; }
-        public DbSet<VacationBalance> vacationBalances { get; set; }
+        public DbSet<VacationBalance> VacationBalances { get; set; }
 
     }
 }

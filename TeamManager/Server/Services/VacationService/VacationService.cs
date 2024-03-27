@@ -1,5 +1,8 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
+using TeamManager.Shared.DTO;
+
 namespace TeamManager.Server.Services.VacationService
 {
     public class VacationService : IVacationService
@@ -32,7 +35,7 @@ namespace TeamManager.Server.Services.VacationService
             int totalRequestedDays = (int)(endDate - startDate).TotalDays;
 
             // Retrieve the VacationBalance for the specified userId and current year
-            VacationBalance vacationBalance = await _context.vacationBalances
+            VacationBalance vacationBalance = await _context.VacationBalances
                 .FirstOrDefaultAsync(vb => vb.UserId == _authService.GetUserId() && vb.Year == DateTime.Now.Year);
 
             if (vacationBalance != null)
@@ -47,6 +50,41 @@ namespace TeamManager.Server.Services.VacationService
             }
         }
 
+        public async Task<ServiceResponse<VacationBalance>> GetVacationBalance(int year)
+        {
+            try
+            {
+                int id = _authService.GetUserId();
+                var balance = await _context.VacationBalances
+                    .FirstOrDefaultAsync(vb => vb.UserId == _authService.GetUserId());
+
+                if (balance != null)
+                {
+                    return new ServiceResponse<VacationBalance>
+                    {
+                        Success = true,
+                        Data = balance
+                    };
+                }
+                else
+                {
+                    return new ServiceResponse<VacationBalance>
+                    {
+                        Success = false,
+                        Message = "Vacation balance not found for the given user ID and year."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<VacationBalance>
+                {
+                    Success = false,
+                    Message = "Could not retrieve your Vacation Balance. Error: " + ex.Message
+                };
+            }
+        }
+
         public async Task<List<VacationRequest>> GetVacationRequests()
         {
             // Query the database to fetch all vacation requests for the given userId
@@ -55,6 +93,66 @@ namespace TeamManager.Server.Services.VacationService
                                                 .ToListAsync();
 
             return vacationRequests;
+        }
+
+        public async Task<ServiceResponse<bool>> RequestVacation(VacationRequestDTO requestDTO)
+        {
+            try
+            {
+                // Check remaining vacation days
+                if (!await CheckRemainingVacation(requestDTO.StartDate, requestDTO.EndDate))
+                {
+                    return new ServiceResponse<bool>
+                    {
+                        Success = false,
+                        Message = "You don't have enough Vacation Days left!"
+                    };
+                }
+
+                // Check existing vacation requests for the time period
+                if (await CheckExistingVacation(requestDTO.StartDate, requestDTO.EndDate))
+                {
+                    return new ServiceResponse<bool>
+                    {
+                        Success = false,
+                        Message = "You already have requested Vacation for this time period!"
+                    };
+                }
+
+                // Map DTO to entity
+                var vacationRequest = new VacationRequest
+                {
+                    UserId = _authService.GetUserId(),
+                    StartDate = requestDTO.StartDate,
+                    EndDate = requestDTO.EndDate,
+                    Reason = requestDTO.Reason,
+                    Status = "Waiting for approval"
+                    // Map other properties from DTO to entity as needed
+                };
+
+                // Add the new vacation request to DbContext
+                _context.VacationRequests.Add(vacationRequest);
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                return new ServiceResponse<bool>
+                {
+                    Success = true,
+                    Message = "Vacation request submitted successfully."
+                };
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                return new ServiceResponse<bool>
+                {
+                    Success = false,
+                    Message = "An error occurred while processing your request: " + ex.Message
+                };
+            }
+
+
         }
     }
 }

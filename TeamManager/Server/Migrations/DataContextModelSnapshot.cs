@@ -78,13 +78,13 @@ namespace TeamManager.Server.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("vacationBalances");
+                    b.ToTable("VacationBalances");
 
                     b.HasData(
                         new
                         {
                             VacationBalanceId = 1,
-                            RemainingBalance = 0,
+                            RemainingBalance = 7,
                             TotalBalance = 20,
                             UserId = 1,
                             Year = 2024
@@ -92,9 +92,17 @@ namespace TeamManager.Server.Migrations
                         new
                         {
                             VacationBalanceId = 2,
-                            RemainingBalance = 0,
+                            RemainingBalance = 15,
                             TotalBalance = 25,
                             UserId = 2,
+                            Year = 2024
+                        },
+                        new
+                        {
+                            VacationBalanceId = 3,
+                            RemainingBalance = 35,
+                            TotalBalance = 35,
+                            UserId = 3,
                             Year = 2024
                         });
                 });
