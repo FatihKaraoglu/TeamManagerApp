@@ -13,7 +13,10 @@ namespace TeamManager.Shared
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
-        public string Role { get; set; } = "Customer";
+        public ICollection<UserRole> UserRoles { get; set; }
+
+        public int DepartmentId { get; set; } // Foreign key
+        public Department Department { get; set; } // User belongs to a department
 
         public ICollection<VacationRequest> VacationRequests { get; set; }
         public ICollection<VacationBalance> VacationBalances { get; set; }

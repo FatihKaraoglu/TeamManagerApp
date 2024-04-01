@@ -22,6 +22,40 @@ namespace TeamManager.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("TeamManager.Shared.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("TeamManager.Shared.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +66,9 @@ namespace TeamManager.Server.Migrations
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -45,13 +82,26 @@ namespace TeamManager.Server.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TeamManager.Shared.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationBalance", b =>
@@ -79,32 +129,6 @@ namespace TeamManager.Server.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("VacationBalances");
-
-                    b.HasData(
-                        new
-                        {
-                            VacationBalanceId = 1,
-                            RemainingBalance = 7,
-                            TotalBalance = 20,
-                            UserId = 1,
-                            Year = 2024
-                        },
-                        new
-                        {
-                            VacationBalanceId = 2,
-                            RemainingBalance = 15,
-                            TotalBalance = 25,
-                            UserId = 2,
-                            Year = 2024
-                        },
-                        new
-                        {
-                            VacationBalanceId = 3,
-                            RemainingBalance = 35,
-                            TotalBalance = 35,
-                            UserId = 3,
-                            Year = 2024
-                        });
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationRequest", b =>
@@ -137,26 +161,36 @@ namespace TeamManager.Server.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("VacationRequests");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            VacationRequestId = 1,
-                            EndDate = new DateTime(2023, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Reason = "Vacation trip",
-                            StartDate = new DateTime(2023, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "Approved",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            VacationRequestId = 2,
-                            EndDate = new DateTime(2023, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Reason = "Family vacation",
-                            StartDate = new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "Pending",
-                            UserId = 2
-                        });
+            modelBuilder.Entity("TeamManager.Shared.User", b =>
+                {
+                    b.HasOne("TeamManager.Shared.Department", "Department")
+                        .WithMany("DepartmentUsers")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("TeamManager.Shared.UserRole", b =>
+                {
+                    b.HasOne("TeamManager.Shared.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamManager.Shared.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationBalance", b =>
@@ -181,8 +215,20 @@ namespace TeamManager.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TeamManager.Shared.Department", b =>
+                {
+                    b.Navigation("DepartmentUsers");
+                });
+
+            modelBuilder.Entity("TeamManager.Shared.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
+                    b.Navigation("UserRoles");
+
                     b.Navigation("VacationBalances");
 
                     b.Navigation("VacationRequests");

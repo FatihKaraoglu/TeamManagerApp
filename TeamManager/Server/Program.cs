@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using TeamManager.Server.Services.VacationService;
+using TeamManager.Server.Services.DepartmentService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IVacationService, VacationService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

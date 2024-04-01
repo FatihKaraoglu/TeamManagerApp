@@ -29,6 +29,10 @@
                     <MudTextField @bind-Value="user.ConfirmPassword" Label="Confirm Password" Required="true" Type="InputType.Password" />
                     <MudFormValidator />
                 </MudItem>
+                 <MudItem Class="mb-3">
+                    <MudTextField @bind-Value="user.Role" Label="Role" Required="true" Type="InputType.Password" />
+                    <MudFormValidator />
+                </MudItem>
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="HandleRegistration">Register</MudButton>
             </MudForm>
             <MudTypography Typo="TypoStyle.Body2" Class="@messageCssClass">

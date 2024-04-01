@@ -44,30 +44,9 @@
             </div>
         } else
         {
-            <MudSkeleton Style="height: 500px">
-                <div class="d-flex flex-row">
-                    <MudCard Style="height: 500px; width: 70%"></MudCard>
-                </div>
-                <div style="width: 30%">
-                    <MudContainer MaxWidth="MaxWidth.Large">
-                        <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Width="60%" />
-                        <!-- Display vacation balance here -->
-                        <MudSkeleton Animation="Animation.Wave" Width="80%" />
-                        <div class="mt-3">
-                            <!-- MudDateRangePicker with top margin -->
-                            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Width="80%" />
-                        </div>
-
-                        <div class="mt-3">
-                            <!-- Submit button with top margin -->
-                            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Width="60%" />
-                        </div>
-                    </MudContainer>
-                </div>
-            </MudSkeleton>
-            <MudOverlay Visible="loadingVisible" DarkBackground="true" Absolute="true">
-                <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
-            </MudOverlay>
+            <MudContainer Class="d-flex justify-center align-center">
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+            </MudContainer>
         }
 
     </DialogContent>
@@ -90,7 +69,7 @@
         await LoadData();
     }
 
-    private IEnumerable<VacationRequest> Elements = new List<VacationRequest>();
+    private List<VacationRequest> Elements = new List<VacationRequest>();
 
     async Task Submit()
     {
@@ -109,6 +88,14 @@
             {
                 LoadData();
                 AddVacationRequestStateSnackBar(result.Message, Severity.Success);
+                Elements.Add(new VacationRequest()
+                    {
+                        StartDate = dateRange.Start.Value,
+                        EndDate = dateRange.End.Value,
+                        Reason = "System Test",
+                        Status = "Waiting for Approval"
+
+                    });
                 dateRangePicker.Clear();
             } else
             {

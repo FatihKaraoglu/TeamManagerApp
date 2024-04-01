@@ -105,8 +105,15 @@ namespace TeamManager.Server.Services.AuthService
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
+                
             };
+
+            // Fetch user roles from UserRole entity and add them as claims
+            var userRoles = user.UserRoles.Select(ur => ur.Role.Name).ToList();
+            foreach (var role in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
                 .GetBytes(_configuration.GetSection("AppSettings:Token").Value));

@@ -3346,19 +3346,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\f.karaoglu\\.nuget\\packages\\": {}
+    "C:\\Users\\karao\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Server\\TeamManager.Server.csproj",
+      "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
       "projectName": "TeamManager.Server",
-      "projectPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Server\\TeamManager.Server.csproj",
-      "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Server\\obj\\",
+      "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
+      "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3366,17 +3371,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Client\\TeamManager.Client.csproj": {
-              "projectPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Client\\TeamManager.Client.csproj"
+            "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj": {
+              "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj"
             },
-            "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
-              "projectPath": "C:\\Users\\f.karaoglu\\Source\\repos\\TeamManager\\TeamManager\\Shared\\TeamManager.Shared.csproj"
+            "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+              "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
             }
           }
         }

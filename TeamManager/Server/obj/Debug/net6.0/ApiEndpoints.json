@@ -78,6 +78,109 @@
     ]
   },
   {
+    "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
+    "Method": "GetDepartments",
+    "RelativePath": "api/Department",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Collections.Generic.List\u00601[[TeamManager.Shared.Department, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
+    "Method": "AddDepartment",
+    "RelativePath": "api/Department",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "department",
+        "Type": "TeamManager.Shared.Department",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
+    "Method": "GetDepartment",
+    "RelativePath": "api/Department/{departmentName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departmentName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[TeamManager.Shared.Department, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
+    "Method": "EditDepartment",
+    "RelativePath": "api/Department/{departmentName}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departmentName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedDepartment",
+        "Type": "TeamManager.Shared.Department",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "TeamManager.Server.Controllers.VacationController",
     "Method": "RequestVacation",
     "RelativePath": "api/Vacation/RequestVacation",
