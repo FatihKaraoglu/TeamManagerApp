@@ -12,7 +12,7 @@ using TeamManager.Server.Data;
 namespace TeamManager.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240401220126_InitCreate")]
+    [Migration("20240402194808_InitCreate")]
     partial class InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,23 +41,6 @@ namespace TeamManager.Server.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("TeamManager.Shared.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
                     b.Property<int>("Id")
@@ -84,26 +67,14 @@ namespace TeamManager.Server.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("TeamManager.Shared.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationBalance", b =>
@@ -168,31 +139,12 @@ namespace TeamManager.Server.Migrations
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
                     b.HasOne("TeamManager.Shared.Department", "Department")
-                        .WithMany("DepartmentUsers")
+                        .WithMany("Users")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("TeamManager.Shared.UserRole", b =>
-                {
-                    b.HasOne("TeamManager.Shared.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TeamManager.Shared.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.VacationBalance", b =>
@@ -219,18 +171,11 @@ namespace TeamManager.Server.Migrations
 
             modelBuilder.Entity("TeamManager.Shared.Department", b =>
                 {
-                    b.Navigation("DepartmentUsers");
-                });
-
-            modelBuilder.Entity("TeamManager.Shared.Role", b =>
-                {
-                    b.Navigation("UserRoles");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
-                    b.Navigation("UserRoles");
-
                     b.Navigation("VacationBalances");
 
                     b.Navigation("VacationRequests");

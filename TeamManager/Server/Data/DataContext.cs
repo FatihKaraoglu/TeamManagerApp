@@ -57,16 +57,13 @@
                      RemainingBalance = 35// Adjust as needed
                  }
             );*/
-
-            modelBuilder.Entity<UserRole>()
-                .HasKey(ur => new { ur.UserId, ur.RoleId });
         }
         public DbSet<User> Users { get; set; }
         public DbSet<VacationRequest> VacationRequests { get; set; }
         public DbSet<VacationBalance> VacationBalances { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Role> Roles{ get; set; }
-        public DbSet<UserRole> UserRoles{ get; set; }
+
+
 
     }
 }

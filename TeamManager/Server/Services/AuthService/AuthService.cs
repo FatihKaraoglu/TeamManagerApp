@@ -62,9 +62,15 @@ namespace TeamManager.Server.Services.AuthService
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-
             _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                
+                await _context.SaveChangesAsync();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); 
+            }
+            
 
             return new ServiceResponse<int> { Data = user.Id, Message = "Registration successful!" };
         }
@@ -105,15 +111,10 @@ namespace TeamManager.Server.Services.AuthService
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Email),
-                
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
-            // Fetch user roles from UserRole entity and add them as claims
-            var userRoles = user.UserRoles.Select(ur => ur.Role.Name).ToList();
-            foreach (var role in userRoles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
+
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
                 .GetBytes(_configuration.GetSection("AppSettings:Token").Value));

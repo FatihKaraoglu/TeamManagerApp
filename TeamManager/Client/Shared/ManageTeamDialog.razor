@@ -1,0 +1,52 @@
+﻿@using TeamManager.Client.Services.DepartmentService
+@using TeamManager.Client.Services.UserService
+@using TeamManager.Shared.DTO
+@inject IUserService UserService
+@inject IDepartmentService DepartmentService
+<MudDialog>
+    <DialogContent>
+        <div class="d-flex flex-row">
+            <MudDropContainer T="UserDTO" Items="UnassignedEmployees" Class="d-flex flex-wrap flex-grow-1">
+                <!--Employee List-->
+                <div style="width: 30%">
+                    <MudDropZone T="UserDTO" Identifier="Unassigend Employees" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
+                        <MudText Typo="Typo.h6" Class="mb-4">Unassigend Employees</MudText>
+                    </MudDropZone>
+                </div>
+                <div style="width: 70%">
+                    @foreach (var department in Departments)
+                    {
+
+                    }
+
+                </div>
+            </MudDropContainer>
+            
+           
+        </div>
+    </DialogContent>
+    <DialogActions>
+
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    public List<Department> Departments { get; set; }
+
+    public List<UserDTO> UnassignedEmployees { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Perform initialization tasks asynchronously here
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        UnassignedEmployess =  (await UserService.GetEmployyesUnassigned()).Data;
+    }
+
+
+}

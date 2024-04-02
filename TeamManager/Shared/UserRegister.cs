@@ -15,7 +15,7 @@ namespace TeamManager.Shared
         public string Password { get; set; } = string.Empty;
         [Compare("Password", ErrorMessage = "The passwords do not match.")]
         public string ConfirmPassword { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
+        public UserRole Role { get; set; } 
 
     }
 }
