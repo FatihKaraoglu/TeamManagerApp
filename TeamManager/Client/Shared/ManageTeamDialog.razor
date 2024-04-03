@@ -1,29 +1,46 @@
 ﻿@using TeamManager.Client.Services.DepartmentService
 @using TeamManager.Client.Services.UserService
 @using TeamManager.Shared.DTO
+@using TeamManager.Shared.ViewClass
 @inject IUserService UserService
 @inject IDepartmentService DepartmentService
+
+
 <MudDialog>
     <DialogContent>
-        <div class="d-flex flex-row">
-            <MudDropContainer T="UserDTO" Items="UnassignedEmployees" Class="d-flex flex-wrap flex-grow-1">
-                <!--Employee List-->
-                <div style="width: 30%">
-                    <MudDropZone T="UserDTO" Identifier="Unassigend Employees" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
-                        <MudText Typo="Typo.h6" Class="mb-4">Unassigend Employees</MudText>
-                    </MudDropZone>
-                </div>
-                <div style="width: 70%">
-                    @foreach (var department in Departments)
-                    {
-
-                    }
-
-                </div>
-            </MudDropContainer>
-            
-           
-        </div>
+        @if (DataLoaded)
+        {
+            <div class="d-flex flex-row">
+                <MudDropContainer T="UserDropItem" Items="Employees" Class="d-flex flex-wrap flex-grow-1" ItemDropped="ItemUpdated">
+                    <ChildContent>
+                    <!-- Employee List -->
+                    <div style="width: 30%">
+                        <MudDropZone T="EmployeeDTO" Identifier="Unassigned Employees" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
+                            <MudText Typo="Typo.h6" Class="mb-4">Unassigned Employees</MudText>
+                        </MudDropZone>
+                    </div>
+                    <div style="width: 70%">
+                        @if (Departments != null && Departments.Any())
+                        {
+                            @foreach (var department in Departments)
+                            {
+                                    <MudDropZone T="EmployeeDTO" Identifier="@department.Name" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
+                                        <MudText Typo="Typo.h6" Class="mb-4">@department.Name</MudText>
+                                    </MudDropZone>
+                            }
+                        }
+                        else
+                        {
+                            <div>No departments available</div>
+                        }
+                    </div>
+                    </ChildContent>
+                    <ItemRenderer>
+                        <MudPaper Elevation="25" Class="pa-4 my-4">@context.Email</MudPaper>
+                    </ItemRenderer>
+                </MudDropContainer>
+            </div>
+        }
     </DialogContent>
     <DialogActions>
 
@@ -33,20 +50,50 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    public List<Department> Departments { get; set; }
+    public List<Department> Departments { get; set; } = new List<Department>();
 
-    public List<UserDTO> UnassignedEmployees { get; set; }
+    public List<UserDropItem> Employees { get; set; } = new List<UserDropItem>();
+
+    public bool DataLoaded { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {
-        // Perform initialization tasks asynchronously here
         await LoadData();
+        DataLoaded = true;
     }
 
     private async Task LoadData()
     {
-        UnassignedEmployess =  (await UserService.GetEmployyesUnassigned()).Data;
+
+        var response = await UserService.GetEmployyesUnassigned();
+        if (response.Success)
+        {
+            List<UserDTO> users = response.Data.ToList();
+        }
+
+        var responseDepartment = await DepartmentService.GetDepartments();
+        if (responseDepartment.Success)
+        {
+            Departments = responseDepartment.Data.ToList();
+        }
     }
 
+    public void  CreateDropItems(List<UserDTO> userDTOs)
+    {
+        foreach(var user in userDTOs)
+        {
+            if(user.DepartmentId == null || !user.DepartmentId.HasValue)
+            {
+                UnassignedEmployees.Add()
+            }
+           
+        }
+    }
 
+    private void ItemUpdated(MudItemDropInfo<EmployeeDTO> dropInfo)
+    {
+        // Your logic to handle the dropped item goes here
+        // For example, you can update the dropped item's properties based on the drop zone identifier
+        // dropInfo.Item.Identifier = dropInfo.DropzoneIdentifier;
+    }
 }

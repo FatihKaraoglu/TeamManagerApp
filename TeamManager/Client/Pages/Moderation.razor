@@ -1,0 +1,41 @@
+﻿@page "/moderation"
+@using TeamManager.Shared;
+@inject IDialogService Dialog
+
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudCard Class="d-flex flex-column justify-center" Elevation="0">
+        <MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h5">
+                    Moderation
+                </MudText>
+            </MudCardContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <div class="d-flex flex-row flex-wrap justify-content-around" style="max-width: 100%;">
+                <MudCard Class="m-2 flex-wrap" Style="min-width: 250px;">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h6">
+                            Moderation
+                        </MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <div style="display: flex; justify-content: center;">
+                            <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Primary" OnClick="OpenManageTeamDialog" />
+                        </div>
+                    </MudCardContent>
+                </MudCard>
+            </div>
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+@code {
+
+    public void OpenManageTeamDialog()
+    {
+        Console.WriteLine("Click");
+        Dialog.Show<ManageTeamDialog>("Manage Team");
+    }
+}

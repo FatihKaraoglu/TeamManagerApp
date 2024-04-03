@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TeamManager.Shared.DTO
 {
     public class UserDTO
-    {
+    {   
         public UserDTO(User user)
         {
             Id = user.Id;
@@ -18,6 +19,18 @@ namespace TeamManager.Shared.DTO
             Department = user.Department;
             VacationRequests = user.VacationRequests;
             VacationBalances = user.VacationBalances;
+        }
+        public UserDTO()
+        {
+            // Initialize collections to avoid null reference exceptions
+            VacationRequests = new List<VacationRequest>();
+            VacationBalances = new List<VacationBalance>();
+        }
+
+        public UserDTO(int id, string name)
+        {
+            Id = id;
+            Email = name;
         }
 
         public int Id { get; set; }
