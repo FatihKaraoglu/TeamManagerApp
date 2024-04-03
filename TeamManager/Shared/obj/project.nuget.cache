@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TygZAflJlZtccRFRe5edFmg3x5oQAPD4oL88y46T1gIKlotMjaMZ+jKcQc/FcRgEj9ECvDMjuvKBLMqIWGL7FA==",
+  "dgSpecHash": "ZsII5u55ev8VXZwpVoLxMAICmOt9cYBIQLFc2kJcCzNBlsOH4er5+jfPUt4syKNdvdt0OEbhj8x2FXmYgkXHJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
+  "projectFilePath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

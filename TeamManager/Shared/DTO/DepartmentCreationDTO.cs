@@ -10,6 +10,5 @@ namespace TeamManager.Shared.DTO
     {
         public string Name { get; set; }
         public List<User> Employees { get; set; }
-        public List<User> Managerss { get; set; }
     }
 }

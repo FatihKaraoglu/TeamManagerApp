@@ -478,7 +478,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.3": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.2": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -1101,7 +1101,7 @@
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.3": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.2": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -1948,10 +1948,10 @@
         "tools/net7.0/illink.runtimeconfig.json"
       ]
     },
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.3": {
-      "sha512": "n4TvjyvxuumcFKarFlUworNlgpelbE/RgUgh0A2v9hHd9uYbIhVm3DXFrs1C8J+q4iLQ1vj2RNBkOl5pBK7zFw==",
+    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.2": {
+      "sha512": "sq7Zs4E699WDIbFloiK/qmp9JtL8vpzMGILjnzYjkY4O1qj6z1Iu36dl4xWXrkVsKDnxw8CZ7NDqsntq5FFPgg==",
       "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.3",
+      "path": "microsoft.net.sdk.webassembly.pack/8.0.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1979,7 +1979,7 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-        "microsoft.net.sdk.webassembly.pack.8.0.3.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.8.0.2.nupkg.sha512",
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -2239,25 +2239,30 @@
       "Microsoft.AspNetCore.WebUtilities >= 2.2.0",
       "Microsoft.NET.ILLink.Analyzers >= 7.0.100-1.23211.1",
       "Microsoft.NET.ILLink.Tasks >= 7.0.100-1.23211.1",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.3",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.2",
       "MudBlazor >= 6.2.0",
       "TeamManager.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\f.karaoglu\\.nuget\\packages\\": {}
+    "C:\\Users\\karao\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
+      "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
       "projectName": "TeamManager.Client",
-      "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
-      "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\obj\\",
+      "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
+      "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2265,14 +2270,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
-              "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
+            "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+              "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
             }
           }
         }
@@ -2328,7 +2334,7 @@
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.3, )",
+            "version": "[8.0.2, )",
             "autoReferenced": true
           },
           "MudBlazor": {
@@ -2347,12 +2353,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+            "version": "[6.0.27, 6.0.27]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

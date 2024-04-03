@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamManager.Server.Services.DepartmentService;
+using TeamManager.Shared.DTO;
 
 namespace TeamManager.Server.Controllers
 {
@@ -16,7 +17,7 @@ namespace TeamManager.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Department>>>> GetDepartments()
+        public async Task<ActionResult<ServiceResponse<List<DepartmentDTO>>>> GetDepartments()
         {
             var response = await _departmentService.GetDepartments();
             if (!response.Success)
@@ -27,7 +28,7 @@ namespace TeamManager.Server.Controllers
         }
 
         [HttpGet("{departmentName}")]
-        public async Task<ActionResult<ServiceResponse<Department>>> GetDepartment(string departmentName)
+        public async Task<ActionResult<ServiceResponse<DepartmentDTO>>> GetDepartment(string departmentName)
         {
             var response = await _departmentService.GetDepartment(departmentName);
             if (!response.Success)
@@ -38,7 +39,7 @@ namespace TeamManager.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<bool>>> AddDepartment(Department department)
+        public async Task<ActionResult<ServiceResponse<bool>>> AddDepartment(DepartmentDTO department)
         {
             var response = await _departmentService.AddDepartment(department);
             if (!response.Success)
@@ -48,10 +49,10 @@ namespace TeamManager.Server.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{departmentName}")]
-        public async Task<ActionResult<ServiceResponse<bool>>> EditDepartment(string departmentName, Department updatedDepartment)
+        [HttpPost("EditDepartment")]
+        public async Task<ActionResult<ServiceResponse<bool>>> EditDepartment(int departmentId, DepartmentDTO updatedDepartment)
         {
-            var response = await _departmentService.EditDepartment(departmentName, updatedDepartment);
+            var response = await _departmentService.EditDepartment(departmentId, updatedDepartment);
             if (!response.Success)
             {
                 return BadRequest(response);

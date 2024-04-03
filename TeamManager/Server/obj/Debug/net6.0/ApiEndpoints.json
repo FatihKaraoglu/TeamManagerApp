@@ -87,7 +87,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Collections.Generic.List\u00601[[TeamManager.Shared.Department, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Collections.Generic.List\u00601[[TeamManager.Shared.DTO.DepartmentDTO, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -107,7 +107,7 @@
     "Parameters": [
       {
         "Name": "department",
-        "Type": "TeamManager.Shared.Department",
+        "Type": "TeamManager.Shared.DTO.DepartmentDTO",
         "IsRequired": true
       }
     ],
@@ -139,7 +139,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "TeamManager.Shared.ServiceResponse\u00601[[TeamManager.Shared.Department, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[TeamManager.Shared.DTO.DepartmentDTO, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -152,20 +152,51 @@
   {
     "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
     "Method": "EditDepartment",
-    "RelativePath": "api/Department/{departmentName}",
-    "HttpMethod": "PUT",
+    "RelativePath": "api/Department/EditDepartment",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "departmentName",
-        "Type": "System.String",
-        "IsRequired": true
+        "Name": "departmentId",
+        "Type": "System.Int32",
+        "IsRequired": false
       },
       {
         "Name": "updatedDepartment",
-        "Type": "TeamManager.Shared.Department",
+        "Type": "TeamManager.Shared.DTO.DepartmentDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.UserController",
+    "Method": "AddEmployeeToDepartment",
+    "RelativePath": "api/User/AddEmployeeToDepartment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "departmentId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

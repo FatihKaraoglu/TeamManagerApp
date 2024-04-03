@@ -1664,8 +1664,6 @@ C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\jwg
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\p3bu3c1ubu.gz
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\mkenmqt1l7.gz
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\oqp7uxpezz.gz
-C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\qio2qhyyre.gz
-C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\x510ayn4hu.gz
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\utgp0i4i4m.gz
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\d6b35o96lw.gz
 C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\uji5zuu4c3.gz
@@ -2542,3 +2540,5 @@ C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client\obj\Debug\net
 C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\uji5zuu4c3.gz
 C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\TeamMana.AB83D91A.Up2Date
 C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\ref\TeamManager.Client.dll
+C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\qio2qhyyre.gz
+C:\Users\karao\TeamManagerApp\TeamManager\Client\obj\Debug\net6.0\compressed\x510ayn4hu.gz

@@ -12,12 +12,37 @@ namespace TeamManager.Server.Services.UserService
             _context = context;
         }
 
+        public async Task<bool> AddUserToDepartment(int userId, int departmentId)
+        {
+            var userToUpdate = await _context.Users.FindAsync(userId);
+
+            if (userToUpdate == null)
+            {
+                throw new Exception("No user with this Id found!");
+                return false;
+            } else
+            {
+                try
+                {
+                    userToUpdate.DepartmentId = departmentId;
+                    await _context.SaveChangesAsync();
+                    return true;
+                } catch (Exception ex)
+                {
+                    throw new Exception("Failed to add User to Department!");
+                    return false;
+                }
+                
+            }
+        }
+
         public async Task<List<UserDTO>> GetEmployeesNotAssigned()
         {
-            var usersAssignedToTeams = _context.Departments.SelectMany(t => t.Users);
-            var unnassignedToTeams = await _context.Users.Where(u => !usersAssignedToTeams.Contains(u)).ToListAsync();
+            var usersWithoutDepartment = await _context.Users
+            .Where(u => u.DepartmentId == null)
+            .ToListAsync();
 
-            var userDTOs = unnassignedToTeams.Select(u => new UserDTO(u)).ToList();
+            var userDTOs = usersWithoutDepartment.Select(u => new UserDTO(u)).ToList();
 
             return userDTOs;
 
@@ -25,7 +50,9 @@ namespace TeamManager.Server.Services.UserService
 
         public async Task<List<UserDTO>> GetUsers()
         {
-            return await _context.Users.Select(u => new UserDTO(u)).ToListAsync();
+            return await _context.Users
+                .Include(u => u.Department)
+                .Select(u => new UserDTO(u)).ToListAsync();
         }
     }
 }

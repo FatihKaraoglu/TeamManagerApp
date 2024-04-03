@@ -17,12 +17,5 @@ namespace TeamManager.Client.Services.UserService
             var response = await result.Content.ReadFromJsonAsync<ServiceResponse<List<UserDTO>>>();
             return response;
         }
-
-        public async Task<ServiceResponse<List<UserDTO>>> GetEmployyesUnassigned()
-        {
-            var result = await _http.GetAsync("api/user/EmployeesNotAssigned");
-            var response = await result.Content.ReadFromJsonAsync<ServiceResponse<List<UserDTO>>>();
-            return response;
-        }
     }
 }

@@ -9,7 +9,13 @@ namespace TeamManager.Shared.ViewClass
 {
     public class UserDropItem
     {
-        public UserDTO UserDTO { get; set; }
+        public UserDropItem(UserDTO userDTO, string identifier)
+        {
+            UserDTO = userDTO;
+            Identifier = identifier;
+        }
+
+        public UserDTO UserDTO { get; init; }
         public string Identifier { get; set; }
     }
 }
