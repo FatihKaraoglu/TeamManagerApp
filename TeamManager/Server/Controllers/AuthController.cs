@@ -19,10 +19,14 @@ namespace TeamManager.Server.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegister request)
         {
+            
             var response = await _authService.Register(
                 new User
                 {
                     Email = request.Email,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Role = request.Role,
                 },
                 request.Password
                 );

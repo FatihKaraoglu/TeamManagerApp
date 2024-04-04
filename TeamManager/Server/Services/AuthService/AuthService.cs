@@ -65,10 +65,11 @@ namespace TeamManager.Server.Services.AuthService
             _context.Users.Add(user);
             try
             {
-                
+                user.DepartmentId = 3;
                 await _context.SaveChangesAsync();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); 
+                return new ServiceResponse<int> { Data = 0, Message = "Registration failed!", Success = false };
             }
             
 

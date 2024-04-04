@@ -13,67 +13,67 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = TeamManager.Client
 build_property.RootNamespace = TeamManager.Client
-build_property.ProjectDir = C:\Users\karao\TeamManagerApp\TeamManager\Client\
+build_property.ProjectDir = C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\karao\TeamManagerApp\TeamManager\Client
+build_property.MSBuildProjectDirectory = C:\Users\f.karaoglu\source\repos\TeamManagerApp\TeamManager\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/App.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/DropZoneTest.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/DropZoneTest.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJvcFpvbmVUZXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/HR-Services.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/HR-Services.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSFItU2VydmljZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/Index.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/Login.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/Moderation.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/Moderation.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9kZXJhdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/Profile.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Pages/Register.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Shared/ManageTeamDialog.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Shared/ManageTeamDialog.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1hbmFnZVRlYW1EaWFsb2cucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Shared/PageLayout.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Shared/PageLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhZ2VMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Shared/VacationDialog.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Shared/VacationDialog.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFZhY2F0aW9uRGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/_Imports.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Shared/AdminMenu.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Shared/AdminMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEFkbWluTWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-2ejgqupoph
 
-[C:/Users/karao/TeamManagerApp/TeamManager/Client/Shared/HomeButton.razor]
+[C:/Users/f.karaoglu/source/repos/TeamManagerApp/TeamManager/Client/Shared/HomeButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEhvbWVCdXR0b24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-aziqwah93k

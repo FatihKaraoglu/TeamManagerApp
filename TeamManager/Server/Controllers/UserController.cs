@@ -71,15 +71,15 @@ namespace TeamManager.Server.Controllers
 
         }
 
+
         [HttpPost("AddEmployeeToDepartment")]
-        public async Task<ActionResult<ServiceResponse<bool>>> AddEmployeeToDepartment(int employeeId, int departmentId)
+        public async Task<ActionResult<ServiceResponse<bool>>> AddEmployeeToDepartment(EmployeeToDepartmentDTO dto)
         {
+            var success = await _userService.AddUserToDepartment(dto.EmployeeId, dto.DepartmentId);
             return new ServiceResponse<bool>()
             {
-                Data = await _userService.AddUserToDepartment(employeeId, departmentId),
-
+                Data = success
             };
-            
         }
 
     }

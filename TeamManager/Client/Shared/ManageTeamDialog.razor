@@ -4,105 +4,88 @@
 @using TeamManager.Shared.ViewClass
 @inject IUserService UserService
 @inject IDepartmentService DepartmentService
+@inject ISnackbar Snackbar
 
 
 <MudDialog>
     <DialogContent>
-        @if (DataLoaded)
-        {
-            <MudDropContainer T="UserDropItem" Items="Employees" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" Class="d-flex flex-wrap flex-grow-1">
-                <ChildContent>
-                    <MudDropZone T="EmployeeDTO" Identifier="Unassigned" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
-                        <MudText Typo="Typo.h6" Class="mb-4">Unassigned</MudText>
+        <MudDropContainer T="UserDropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+            <ChildContent>
+                @foreach(var department in Departments)
+                {
+                    <MudDropZone T="UserDropItem" Identifier="@department.Id.ToString()" Class="rounded-lg border-2 border-solid mud-border-lines-default pa-6 ma-8 flex-grow-1" style="min-width: 200px; min-height: 200px;">
+                        <MudText Typo="Typo.h6" Class="mb-4">@department.Name</MudText>
                     </MudDropZone>
-
-                    @if (Departments != null && Departments.Any())
-                    {
-                        @foreach (var department in Departments)
-                        {
-                            <MudDropZone T="EmployeeDTO" Identifier="@department.Name" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
-                                <MudText Typo="Typo.h6" Class="mb-4">@department.Name</MudText>
-                            </MudDropZone>
-                        }
-                    }
-                </ChildContent>
-                <ItemRenderer>
-                    <MudPaper Elevation="25" Class="pa-4 my-4">@context.Identifier</MudPaper>
-                </ItemRenderer>
-            </MudDropContainer>
-        }
+                }
+            </ChildContent>
+            <ItemRenderer>
+                <MudPaper Outlined="true" BorderStyle="BorderStyle.Solid" BorderThickness="2" Class=" pa-4 my-4">@context.UserDTO.Email</MudPaper>
+            </ItemRenderer>
+        </MudDropContainer>
     </DialogContent>
     <DialogActions>
-
+        <MudButton OnClick="SaveChanges">
+            Save Changes
+        </MudButton>
     </DialogActions>
 </MudDialog>
 
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-
     public List<Department> Departments { get; set; } = new List<Department>();
-
-    public List<UserDropItem> Employees { get; set; } = new List<UserDropItem>();
-
-    public bool DataLoaded { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadData();
-        DataLoaded = true;
-
-        StateHasChanged();
-
-    }
-
-    private async Task LoadData()
-    {
-        /*var responseDepartment = await DepartmentService.GetDepartments();
-        if (responseDepartment.Success)
-        {
-            Departments = responseDepartment.Data.ToList();
-        }*/
-
         var response = await UserService.GetAllUsers();
         if (response.Success)
         {
             List<UserDTO> users = response.Data.ToList();
             await CreateDropItems(users);
         }
-    }
 
-
-    public async Task CreateDropItems(List<UserDTO> userDTOs)
-    {
-        Employees.Clear();
-        foreach (var user in userDTOs)
+        var responseDepartment = await DepartmentService.GetDepartments();
+        if (responseDepartment.Success)
         {
-
-            Console.WriteLine("Im here");
-                 Employees.Add
-                 (
-                     new UserDropItem(user, "Unassigned")
-                );
-            // if (user.DepartmentId == null)
-            // {
-            //     Console.WriteLine("Im here");
-            //     Employees.Add
-            //     (
-            //         new UserDropItem(user, "Unassigned")
-            //     );
-            // }
-            // else
-            // {
-            //     Employees.Add
-            //     (
-            //         new UserDropItem(user, user.Department.Name)
-            //     );
-            // }
+            Departments = responseDepartment.Data.ToList();
         }
     }
 
     private void ItemUpdated(MudItemDropInfo<UserDropItem> dropItem)
     {
         dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
+    }
+
+    private List<UserDropItem> _items = new()
+    {
+        new UserDropItem( new UserDTO (0, "Hans"), "Drop Zone 1"),
+        new UserDropItem( new UserDTO (1, "Albert"), "Drop Zone 1"),
+        new UserDropItem( new UserDTO (2, "Hannes"), "Drop Zone 1"),
+    };
+
+    public async Task CreateDropItems(List<UserDTO> userDTOs)
+    {
+        _items.Clear();
+        foreach (var user in userDTOs)
+        {
+            _items.Add(new UserDropItem(user, user.Department.Id.ToString()));
+        }
+    }
+
+    private async Task SaveChanges()
+    {
+        bool success = true;
+        foreach(var user in _items)
+        {
+            success = (await UserService.AddUserToDepartment(user.UserDTO.Id, int.Parse(user.Identifier))).Data;
+            if(success == false)
+            {
+                Snackbar.Add($"Failed to add User:{user.UserDTO.Email} to {user.Identifier}", Severity.Warning);
+            } 
+        }
+
+        if(success == true)
+        {
+            Snackbar.Add($"Succesfully added all Users to Departments", Severity.Success);
+        }
     }
 }

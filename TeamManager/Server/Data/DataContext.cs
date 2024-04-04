@@ -9,59 +9,22 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<VacationRequest>().HasData(
-        new VacationRequest
-        {
-            VacationRequestId = 1,
-            UserId = 1,
-            StartDate = new DateTime(2023, 3, 1),
-            EndDate = new DateTime(2023, 3, 7),
-            Status = "Approved",
-            Reason = "Vacation trip"
-        },
-        new VacationRequest
-        {
-            VacationRequestId = 2,
-            UserId = 2,
-            StartDate = new DateTime(2023, 4, 15),
-            EndDate = new DateTime(2023, 4, 20),
-            Status = "Pending",
-            Reason = "Family vacation"
-        }
-    );
+            modelBuilder.Entity<User>()
+                .Property(u => u.PhoneNumber)
+                .IsRequired(false); // Make the PhoneNumber property optional
+            modelBuilder.Entity<User>()
+            .HasOne(u => u.Address)
+            .WithOne(a => a.User)
+            .HasForeignKey<Address>(a => a.UserId) // Assuming Address has a UserId property
+            .IsRequired(false); // Make the relationship optional
 
-          modelBuilder.Entity<VacationBalance>().HasData(
-                new VacationBalance
-                {
-                    VacationBalanceId = 1,
-                    UserId = 1,
-                    Year = 2024,
-                    TotalBalance = 20, // Adjust as needed
-                     RemainingBalance = 7
-                },
-                new VacationBalance
-                {
-                    VacationBalanceId = 2,
-                    UserId = 2,
-                    Year = 2024,
-                    TotalBalance = 25, // Adjust as needed
-                    RemainingBalance = 15
-            
-                },
-                 new VacationBalance
-                 {
-                     VacationBalanceId = 3,
-                     UserId = 3,
-                     Year = 2024,
-                     TotalBalance = 35,
-                     RemainingBalance = 35// Adjust as needed
-                 }
-            );*/
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<User> Users { get; set; }
         public DbSet<VacationRequest> VacationRequests { get; set; }
         public DbSet<VacationBalance> VacationBalances { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Address> Adresses { get; set; }
 
 
 

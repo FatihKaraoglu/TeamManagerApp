@@ -22,6 +22,41 @@ namespace TeamManager.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("TeamManager.Shared.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Adresses");
+                });
+
             modelBuilder.Entity("TeamManager.Shared.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -47,6 +82,9 @@ namespace TeamManager.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -57,6 +95,14 @@ namespace TeamManager.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -64,6 +110,9 @@ namespace TeamManager.Server.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -134,10 +183,19 @@ namespace TeamManager.Server.Migrations
                     b.ToTable("VacationRequests");
                 });
 
+            modelBuilder.Entity("TeamManager.Shared.Address", b =>
+                {
+                    b.HasOne("TeamManager.Shared.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("TeamManager.Shared.Address", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
                     b.HasOne("TeamManager.Shared.Department", "Department")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("DepartmentId");
 
                     b.Navigation("Department");
@@ -165,13 +223,11 @@ namespace TeamManager.Server.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TeamManager.Shared.Department", b =>
-                {
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("TeamManager.Shared.User", b =>
                 {
+                    b.Navigation("Address")
+                        .IsRequired();
+
                     b.Navigation("VacationBalances");
 
                     b.Navigation("VacationRequests");

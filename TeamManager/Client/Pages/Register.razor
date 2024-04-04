@@ -29,6 +29,14 @@
                     <MudTextField @bind-Value="user.ConfirmPassword" Label="Confirm Password" Required="true" Type="InputType.Password" />
                     <MudFormValidator />
                 </MudItem>
+                <MudItem Class="mb-3">
+                    <MudTextField @bind-Value="user.FirstName" Label="First Name" Required="true" />
+                    <MudFormValidator />
+                </MudItem>
+                <MudItem Class="mb-3">
+                    <MudTextField @bind-Value="user.LastName" Label="Last Name" Required="true" />
+                    <MudFormValidator />
+                </MudItem>
                  <MudItem Class="mb-3">
                     <MudSelect Label="User Role" @bind-Value="user.Role">
                         @foreach (UserRole role in Enum.GetValues(typeof(UserRole)))
