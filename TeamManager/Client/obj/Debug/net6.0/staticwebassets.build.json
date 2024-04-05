@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9/Z2921lJb5ZfYk5jVGrGoj/lqL/48U0yOut8fjq8gk=",
+  "Hash": "bV5/RoHRna52mns4ez5IdtBdKPRNXJODfIUqzLQMTAk=",
   "Source": "TeamManager.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -7978,25 +7978,6 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "TeamManager.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
-    },
-    {
       "Identity": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "TeamManager.Client",
       "SourceType": "Discovered",
@@ -8109,6 +8090,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Identity": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "TeamManager.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

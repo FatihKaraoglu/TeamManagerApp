@@ -60,7 +60,17 @@ namespace TeamManager.Server.Controllers
             return Ok(response);
         }
 
+        [HttpPost("DeleteDepartment")]
+        public async Task<ActionResult<ServiceResponse<bool>>> DeleteDepartment(int departmentId)
+        {
+            var response = await _departmentService.DeleteDepartment(departmentId);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
 
-        
+
     }
 }

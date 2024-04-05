@@ -10,6 +10,8 @@ namespace TeamManager.Server.Services.DepartmentService
         Task<ServiceResponse<bool>> AddDepartment(DepartmentDTO department);
         Task<ServiceResponse<bool>> EditDepartment(int departmentId, DepartmentDTO updatedDepartment);
         Task<ServiceResponse<bool>> EditDepartment(string departmentName, DepartmentDTO updatedDepartment);
+        Task<ServiceResponse<bool>> DeleteDepartment(int departmentId);
+
 
 
     }

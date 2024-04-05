@@ -1,25 +1,60 @@
-﻿@using TeamManager.Client.Services.DepartmentService
+﻿@using System.ComponentModel.DataAnnotations
+@using MudBlazor
+@using TeamManager.Client.Services.DepartmentService
 @using TeamManager.Client.Services.UserService
 @using TeamManager.Shared.DTO
 @using TeamManager.Shared.ViewClass
+@using static TeamManager.Client.Shared.ManageTeamDialog
+
 @inject IUserService UserService
 @inject IDepartmentService DepartmentService
 @inject ISnackbar Snackbar
 
-
 <MudDialog>
+    <TitleContent>
+        <div class="d-flex justify-space-between">
+            <h3>Manage Departments</h3>
+            <MudIconButton Icon="@Icons.Material.Filled.Add" aria-label="add"></MudIconButton>
+        </div>
+    </TitleContent>
     <DialogContent>
-        <MudDropContainer T="UserDropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+        <MudDropContainer T="KanbanUserItem" @ref="_dropContainer" Items="@_userItems" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="TaskUpdated" Class="d-flex flex-wrap justify-content-start">
             <ChildContent>
-                @foreach(var department in Departments)
+                @foreach (var department in _sections)
                 {
-                    <MudDropZone T="UserDropItem" Identifier="@department.Id.ToString()" Class="rounded-lg border-2 border-solid mud-border-lines-default pa-6 ma-8 flex-grow-1" style="min-width: 200px; min-height: 200px;">
-                        <MudText Typo="Typo.h6" Class="mb-4">@department.Name</MudText>
-                    </MudDropZone>
+                    <MudPaper Elevation="0" Width="224px" MinHeight="400px" Class="pa-4 ma-4 d-flex flex-column mud-background-gray rounded-lg" Outlined="true">
+                        <MudToolBar DisableGutters="true">
+                            <MudText Typo="Typo.subtitle1"><b>@department.Name</b></MudText>
+                            <MudSpacer />
+                            <MudMenu Icon="@Icons.Material.Rounded.MoreHoriz" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight" ListClass="pa-2 d-flex flex-column" PopoverClass="mud-elevation-25">
+                                <MudButton Size="Size.Small" Color="Color.Error" StartIcon="@Icons.Material.Outlined.Delete" OnClick="@( () => DeleteSection(department))">Delete Section</MudButton>
+                                <MudButton Size="Size.Small" Color="Color.Default" StartIcon="@Icons.Material.Rounded.Edit">Rename Section</MudButton>
+                            </MudMenu>
+                        </MudToolBar>
+                        <MudDropZone T="KanbanUserItem" Identifier="@department.Identifier" Class="mud-height-full" />
+
+                    </MudPaper>
                 }
+
+                <MudPaper Class="pa-4" Elevation="0" Width="224px">
+                    @if (_addSectionOpen)
+                    {
+                        <MudPaper Elevation="0" Width="224px" Class="pa-4 d-flex flex-column mud-background-gray rounded-lg" Outlined="true">
+                            <EditForm Model="@newDepartmentForm" OnValidSubmit="OnValidSectionSubmit">
+                                <DataAnnotationsValidator />
+                                <MudTextField @bind-Value="newDepartmentForm.Name" For="@(() => newDepartmentForm.Name)" Placeholder="New Section" DisableUnderLine="true"></MudTextField>
+                                <MudButton ButtonType="ButtonType.Submit" Size="Size.Small" Color="Color.Primary" FullWidth="true">Add Department</MudButton>
+                            </EditForm>
+                        </MudPaper>
+                    }
+                    else
+                    {
+                        <MudButton OnClick="OpenAddNewSection" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Add" Color="Color.Primary" Class="rounded-lg py-2" FullWidth="true">Add Section</MudButton>
+                    }
+                </MudPaper>
             </ChildContent>
             <ItemRenderer>
-                <MudPaper Outlined="true" BorderStyle="BorderStyle.Solid" BorderThickness="2" Class=" pa-4 my-4">@context.UserDTO.Email</MudPaper>
+                <MudPaper Elevation="25" Class="pa-4 rounded-lg my-3" Outlined="true">@context.Name</MudPaper>
             </ItemRenderer>
         </MudDropContainer>
     </DialogContent>
@@ -34,19 +69,47 @@
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     public List<Department> Departments { get; set; } = new List<Department>();
 
+    private MudDropContainer<KanbanUserItem> _dropContainer;
+    private bool _addSectionOpen;
+    NewDepartmentForm newDepartmentForm = new NewDepartmentForm();
+
+    private void TaskUpdated(MudItemDropInfo<KanbanUserItem> info)
+    {
+        info.Item.Identifier = info.DropzoneIdentifier;
+    }
+
+    private List<DepartmentSection> _sections = new List<DepartmentSection>();
+
+    private List<KanbanUserItem> _userItems = new()
+    {
+            new KanbanUserItem("Write unit test", "3", new UserDTO(){ Email= "Haha"}),
+            new KanbanUserItem("Some docu stuff", "3", new UserDTO(){ Email= "Haha1"}),
+            new KanbanUserItem("Walking the dog", "3", new UserDTO(){ Email= "Haha2"}),
+    };
+
     protected override async Task OnInitializedAsync()
     {
         var response = await UserService.GetAllUsers();
-        if (response.Success)
-        {
-            List<UserDTO> users = response.Data.ToList();
-            await CreateDropItems(users);
-        }
 
         var responseDepartment = await DepartmentService.GetDepartments();
         if (responseDepartment.Success)
         {
-            Departments = responseDepartment.Data.ToList();
+            var departments = responseDepartment.Data.ToList();
+            CreateDepartmentSections(departments);
+        }
+
+        if (response.Success)
+        {
+            List<UserDTO> users = response.Data.ToList();
+            await CreateKanbanUserItems(users);
+        }
+    }
+
+    private void CreateDepartmentSections(List<Department> departments)
+    {
+        foreach (var department in departments)
+        {
+            _sections.Add(new DepartmentSection(department.Name, department.Id.ToString(), department.Id));
         }
     }
 
@@ -55,37 +118,108 @@
         dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
     }
 
-    private List<UserDropItem> _items = new()
+    public async Task CreateKanbanUserItems(List<UserDTO> userDTOs)
     {
-        new UserDropItem( new UserDTO (0, "Hans"), "Drop Zone 1"),
-        new UserDropItem( new UserDTO (1, "Albert"), "Drop Zone 1"),
-        new UserDropItem( new UserDTO (2, "Hannes"), "Drop Zone 1"),
-    };
-
-    public async Task CreateDropItems(List<UserDTO> userDTOs)
-    {
-        _items.Clear();
+        _userItems.Clear();
         foreach (var user in userDTOs)
         {
-            _items.Add(new UserDropItem(user, user.Department.Id.ToString()));
+            _userItems.Add(new KanbanUserItem(user.Email, user.Department.Id.ToString(), user));
         }
     }
 
     private async Task SaveChanges()
     {
         bool success = true;
-        foreach(var user in _items)
+        foreach (var user in _userItems)
         {
             success = (await UserService.AddUserToDepartment(user.UserDTO.Id, int.Parse(user.Identifier))).Data;
-            if(success == false)
+            if (success == false)
             {
-                Snackbar.Add($"Failed to add User:{user.UserDTO.Email} to {user.Identifier}", Severity.Warning);
-            } 
+                Snackbar.Add($"Failed to add User:{user.UserDTO.Email} to {user.Name}", Severity.Warning);
+            }
         }
 
-        if(success == true)
+        foreach (var department in Departments)
+        {
+            var departmentDTO = new DepartmentDTO
+                {
+                    Id = department.Id,
+                    Name = department.Name
+                };
+            success = (await DepartmentService.AddDepartment(departmentDTO)).Data;
+
+
+        }
+
+        if (success == true)
         {
             Snackbar.Add($"Succesfully added all Users to Departments", Severity.Success);
         }
     }
+
+
+    // Kanban Stuff
+
+    public class NewDepartmentForm
+    {
+        [Required]
+        public string Name { get; set; }
+    }
+
+    private async Task OnValidSectionSubmit(EditContext context)
+    {
+        var result = await DepartmentService.AddDepartment(new DepartmentDTO()
+            {
+                Name = newDepartmentForm.Name
+            });
+
+        if (result.Success)
+        {
+            _sections.Add(new DepartmentSection(newDepartmentForm.Name, false, (_sections.Last().DepartmentId + 1).ToString(), string.Empty));
+            newDepartmentForm.Name = string.Empty;
+            _addSectionOpen = false;
+            Snackbar.Add($"Succesfully added Department: {newDepartmentForm.Name}", Severity.Success);
+        } else
+        {
+            Snackbar.Add($"Failed to add Department: {newDepartmentForm.Name}", Severity.Warning);
+        }
+
+    }
+
+    private void OpenAddNewSection()
+    {
+        _addSectionOpen = true;
+    }
+
+    private async Task DeleteSection(DepartmentSection section)
+    {
+        if (_sections.Count == 1)
+        {
+            _userItems.Clear();
+            _sections.Clear();
+        }
+        else
+        {
+
+            if ((await DepartmentService.DeleteDepartment(section.DepartmentId)).Success == false) {
+                Snackbar.Add($"Failed to remove Department {section.Name}");
+                return;
+            }
+
+            _sections.Remove(section);
+
+            int newIndex = _sections.IndexOf(section) - 1;
+            if (newIndex < 0)
+            {
+                newIndex = 0;
+            }
+
+            var users = _userItems.Where(x => x.Identifier == section.Identifier);
+            foreach (var item in users)
+            {
+                item.Identifier = _sections[newIndex].Identifier;
+            }
+        }
+    }
+
 }

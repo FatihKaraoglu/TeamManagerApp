@@ -184,6 +184,45 @@ namespace TeamManager.Server.Services.DepartmentService
             }
             return response;
         }
+
+        public async Task<ServiceResponse<bool>> DeleteDepartment(int departmentId)
+        {
+            var response = new ServiceResponse<bool>();
+            try
+            {
+                var existingDepartment = await _context.Departments.FirstOrDefaultAsync(d => d.Id == departmentId);
+                if (existingDepartment != null)
+                {
+                    var usersToUpdate = await _context.Users.Where(u => u.DepartmentId == departmentId).ToListAsync();
+                    foreach (var user in usersToUpdate)
+                    {
+                        user.DepartmentId = 3; // Assuming No Department is 3 
+                    }
+
+                    _context.Departments.Remove(existingDepartment);
+
+
+
+                    await _context.SaveChangesAsync();
+                    response.Data = true;
+                    response.Success = true;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Message = "Department not found";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+
+
+        }
     }
 }
 
