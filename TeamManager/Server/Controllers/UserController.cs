@@ -82,5 +82,30 @@ namespace TeamManager.Server.Controllers
             };
         }
 
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<UserDTO>>> GetUser()
+        {
+            var dto = await _userService.GetUser();
+            if(dto == null)
+            {
+                return new ServiceResponse<UserDTO>()
+                {
+                    Success = false,
+                    Message = "Failed to get User"
+                };
+            }
+
+            return Ok(new ServiceResponse<UserDTO>{
+                Data = dto,
+                Success = true
+            });
+        }
+
+        [HttpPost("UpdateProfile")]
+        public async Task<ActionResult<ServiceResponse<bool>>> UpdateProfile(ProfileForm profileForm)
+        {
+            return await _userService.UpdateProfile(profileForm);
+        }
+
     }
 }

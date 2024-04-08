@@ -1,0 +1,79 @@
+﻿@using TeamManager.Client.Services.UserService
+@inject IUserService userService
+@inject ISnackbar snackBar
+<MudDialog>
+    <DialogContent>
+        <MudTabs Outlined="true" Position="Position.Left" Rounded="true" Border="true"
+                 ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
+            <MudTabPanel Text="Edit Profile" Icon="@Icons.Material.Filled.Edit">
+                <MudForm Model="ProfileForm" OnValidSubmit="HandleLogin">
+            <MudItem>
+                <MudTextField @bind-Value="ProfileForm.FirstName" Label="First Name" Required="true" />
+                <MudFormValidator/>
+            </MudItem>
+            <MudItem>
+                <MudTextField @bind-Value="ProfileForm.LastName" Label="Last Name" Required="true" />
+                <MudFormValidator/>
+            </MudItem>
+             <MudItem>
+                <MudTextField @bind-Value="ProfileForm.Email" Label="E-Mail" Required="true" />
+                <MudFormValidator/>
+            </MudItem>
+            <MudItem>
+                <MudTextField @bind-Value="ProfileForm.State" Label="State"  />
+                <MudFormValidator/>
+            </MudItem>
+            <MudItem>
+                <MudTextField @bind-Value="ProfileForm.City" Label="City"  />
+                <MudFormValidator/>
+            </MudItem>
+            <MudItem>
+                <MudTextField @bind-Value="ProfileForm.PhoneNumber" Label="Phone"  />
+                <MudFormValidator/>
+            </MudItem>
+            <MudItem Class="mt-3">
+                <MudIconButton Icon="@Icons.Material.Filled.Save" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium" OnClick="Save"/>
+            </MudItem>
+        </MudForm>
+            </MudTabPanel>
+            <MudTabPanel Text="Settings" Icon="@Icons.Material.Filled.Settings" />
+        </MudTabs>
+    </DialogContent>
+    <DialogActions>
+      
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    public ProfileForm ProfileForm { get; set; } = new ProfileForm();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await userService.GetUser();
+        if (!response.Success)
+        {
+            snackBar.Add(response.Message, Severity.Error);
+
+        }
+        else
+        {
+            ProfileForm = new ProfileForm(response.Data);
+
+        }
+    }
+
+    private async Task Save()
+    {
+        var result = await userService.UpdateProfile(ProfileForm);
+        if (!result.Success)
+        {
+            snackBar.Add(result.Message, Severity.Error);
+
+        } else
+        {
+            snackBar.Add("Updated User Profile!", Severity.Success);
+        }
+    }
+}

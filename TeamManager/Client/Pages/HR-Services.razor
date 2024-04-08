@@ -1,4 +1,5 @@
 ﻿@page "/hr-services"
+@using TeamManager.Client.Shared.Dialogs
 @using TeamManager.Shared;
 @inject IDialogService Dialog
 
@@ -26,6 +27,18 @@
                         </div>
                     </MudCardContent>
                 </MudCard>
+                <MudCard Class="m-2 flex-wrap" Style="min-width: 250px;">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h6">
+                            Profile
+                        </MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <div style="display: flex; justify-content: center;">
+                            <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Primary" OnClick="OpenProfileDialog" />
+                        </div>
+                    </MudCardContent>
+                </MudCard>
             </div>
         </MudCardContent>
     </MudCard>
@@ -37,5 +50,11 @@
     {
         Console.WriteLine("Click");
         Dialog.Show<VacationDialog>("Vacation Request");
+    }
+
+    public void OpenProfileDialog()
+    {
+        Console.WriteLine("Click");
+        Dialog.Show<ProfileDialog>("My Profile");
     }
 }

@@ -151,6 +151,32 @@
   },
   {
     "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
+    "Method": "DeleteDepartment",
+    "RelativePath": "api/Department/DeleteDepartment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departmentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.DepartmentController",
     "Method": "EditDepartment",
     "RelativePath": "api/Department/EditDepartment",
     "HttpMethod": "POST",
@@ -182,6 +208,26 @@
   },
   {
     "ContainingType": "TeamManager.Server.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[TeamManager.Shared.DTO.UserDTO, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.UserController",
     "Method": "AddEmployeeToDepartment",
     "RelativePath": "api/User/AddEmployeeToDepartment",
     "HttpMethod": "POST",
@@ -189,14 +235,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "employeeId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "departmentId",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "dto",
+        "Type": "TeamManager.Shared.DTO.EmployeeToDepartmentDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -242,6 +283,32 @@
     "ReturnTypes": [
       {
         "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Collections.Generic.List\u00601[[TeamManager.Shared.DTO.UserDTO, TeamManager.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamManager.Server.Controllers.UserController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/User/UpdateProfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "profileForm",
+        "Type": "TeamManager.Shared.ProfileForm",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamManager.Shared.ServiceResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj": {}
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj": {
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
+        "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
         "projectName": "TeamManager.Client",
-        "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
-        "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\obj\\",
+        "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj",
+        "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
-                "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
+              "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+                "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
               }
             }
           }
@@ -85,7 +90,7 @@
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )",
+              "version": "[8.0.2, )",
               "autoReferenced": true
             },
             "MudBlazor": {
@@ -104,12 +109,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.27, 6.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -118,17 +129,21 @@
         }
       }
     },
-    "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj": {
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
+        "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
         "projectName": "TeamManager.Server",
-        "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
-        "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Server\\obj\\",
+        "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\TeamManager.Server.csproj",
+        "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Server\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -136,17 +151,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj": {
-                "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj"
+              "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj": {
+                "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Client\\TeamManager.Client.csproj"
               },
-              "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
-                "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
+              "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+                "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj"
               }
             }
           }
@@ -216,21 +232,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
+    "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
         "projectName": "TeamManager.Shared",
-        "projectPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
-        "packagesPath": "C:\\Users\\f.karaoglu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\f.karaoglu\\source\\repos\\TeamManagerApp\\TeamManager\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\TeamManager.Shared.csproj",
+        "packagesPath": "C:\\Users\\karao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\karao\\TeamManagerApp\\TeamManager\\Shared\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\f.karaoglu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\karao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -238,6 +258,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -276,7 +297,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

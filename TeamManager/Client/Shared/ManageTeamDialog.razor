@@ -40,6 +40,7 @@
                     @if (_addSectionOpen)
                     {
                         <MudPaper Elevation="0" Width="224px" Class="pa-4 d-flex flex-column mud-background-gray rounded-lg" Outlined="true">
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium" OnClick="closeAddSection"/>
                             <EditForm Model="@newDepartmentForm" OnValidSubmit="OnValidSectionSubmit">
                                 <DataAnnotationsValidator />
                                 <MudTextField @bind-Value="newDepartmentForm.Name" For="@(() => newDepartmentForm.Name)" Placeholder="New Section" DisableUnderLine="true"></MudTextField>
@@ -155,6 +156,11 @@
         {
             Snackbar.Add($"Succesfully added all Users to Departments", Severity.Success);
         }
+    }
+
+    private void closeAddSection()
+    {
+        _addSectionOpen = false;
     }
 
 

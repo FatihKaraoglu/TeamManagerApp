@@ -29,5 +29,18 @@ namespace TeamManager.Client.Services.UserService
             var response = await result.Content.ReadFromJsonAsync<ServiceResponse<List<UserDTO>>>();
             return response;
         }
+
+        public async Task<ServiceResponse<UserDTO>> GetUser()
+        {
+            var result = await _http.GetAsync("api/user");
+            var response = await result.Content.ReadFromJsonAsync<ServiceResponse<UserDTO>>();
+            return response;
+        }
+
+        public async Task<ServiceResponse<bool>> UpdateProfile(ProfileForm profileForm)
+        {
+            var result = await _http.PostAsJsonAsync("api/user/UpdateProfile", profileForm);
+            return await result.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+        }
     }
 }
