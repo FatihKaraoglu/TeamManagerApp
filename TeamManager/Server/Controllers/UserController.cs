@@ -104,7 +104,8 @@ namespace TeamManager.Server.Controllers
         [HttpPost("UpdateProfile")]
         public async Task<ActionResult<ServiceResponse<bool>>> UpdateProfile(ProfileForm profileForm)
         {
-            return await _userService.UpdateProfile(profileForm);
+            var response =  await _userService.UpdateProfile(profileForm);
+            return Ok(response);
         }
 
     }

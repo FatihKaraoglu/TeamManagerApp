@@ -102,7 +102,7 @@ namespace TeamManager.Server.Services.UserService
             {
                 var user = await _context.Users.Include(u => u.Address).Where(u => u.Id == _authService.GetUserId()).FirstAsync();
 
-                user.PhoneNumber = profileForm.PhoneNumber;
+                //user.PhoneNumber = profileForm.PhoneNumber;
                 user.FirstName = profileForm.FirstName;
                 user.LastName = profileForm.LastName;
                 user.Email = profileForm.Email;
@@ -112,7 +112,7 @@ namespace TeamManager.Server.Services.UserService
                 user.Address.Street = profileForm.Street;
 
                 await _context.SaveChangesAsync();
-                return new ServiceResponse<bool> { Success = true };
+                return new ServiceResponse<bool> { Success = true, Data = true };
             } catch (Exception ex)
             {
                 return new ServiceResponse<bool>

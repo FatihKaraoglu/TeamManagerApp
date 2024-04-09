@@ -31,6 +31,18 @@ namespace TeamManager.Shared
            
         }
 
+        public ProfileForm(string email, string firstName, string lastName, string? phoneNumber, string street, string city, string state, string zipCode)
+        {
+            Email = email;
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Street = street;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+        }
+
         [Required]
         public string Email { get; set; } = string.Empty;
         [Required]

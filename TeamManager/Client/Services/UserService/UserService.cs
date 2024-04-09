@@ -39,8 +39,11 @@ namespace TeamManager.Client.Services.UserService
 
         public async Task<ServiceResponse<bool>> UpdateProfile(ProfileForm profileForm)
         {
-            var result = await _http.PostAsJsonAsync("api/user/UpdateProfile", profileForm);
-            return await result.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+            var result = await _http.PostAsJsonAsync("api/User/UpdateProfile", profileForm);
+            var resultContent = await result.Content.ReadAsStringAsync();
+            var response = await result.Content.ReadFromJsonAsync<ServiceResponse<bool>>();
+            return response;
+
         }
     }
 }

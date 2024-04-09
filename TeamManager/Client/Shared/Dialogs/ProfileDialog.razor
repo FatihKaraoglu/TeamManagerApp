@@ -27,8 +27,16 @@
                 <MudTextField @bind-Value="ProfileForm.City" Label="City"  />
                 <MudFormValidator/>
             </MudItem>
+             <MudItem>
+                <MudTextField @bind-Value="ProfileForm.Street" Label="Street"  />
+                <MudFormValidator/>
+            </MudItem>
             <MudItem>
                 <MudTextField @bind-Value="ProfileForm.PhoneNumber" Label="Phone"  />
+                <MudFormValidator/>
+            </MudItem>
+             <MudItem>
+                <MudTextField @bind-Value="ProfileForm.ZipCode" Label="ZipCode"  />
                 <MudFormValidator/>
             </MudItem>
             <MudItem Class="mt-3">
@@ -67,13 +75,12 @@
     private async Task Save()
     {
         var result = await userService.UpdateProfile(ProfileForm);
-        if (!result.Success)
-        {
-            snackBar.Add(result.Message, Severity.Error);
-
+        if (result.Success)
+        { 
+            snackBar.Add("Updated User Profile!", Severity.Success);
         } else
         {
-            snackBar.Add("Updated User Profile!", Severity.Success);
+            snackBar.Add(result.Message, Severity.Error);
         }
     }
 }
